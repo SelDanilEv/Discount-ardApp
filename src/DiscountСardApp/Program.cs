@@ -1,8 +1,12 @@
+using Discount—ardApp.Infrastructure.Extensions;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllersWithViews();
+
+builder.Services.ConfigureApiService(builder.Configuration, builder.Environment, true);
 
 var app = builder.Build();
 
@@ -16,6 +20,7 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
+
 
 
 app.MapControllerRoute(
