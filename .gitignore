@@ -79,8 +79,6 @@ src/.vs
 
 #my git ignores
 passwords.txt
-appsettings.json
-appsettings.Test.json
 appsettings.Development.json
 
 
