@@ -8,10 +8,6 @@
 
   <ItemGroup>
     <Folder Include="Common\Interfaces\" />
-    <Folder Include="DTOs\" />
-    <Folder Include="Models\" />
-    <Folder Include="Modules\Report\Queries\" />
-    <Folder Include="Modules\Report\Commands\" />
     <Folder Include="Services\Interfaces\" />
   </ItemGroup>
 

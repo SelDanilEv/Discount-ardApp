@@ -1,4 +1,4 @@
-﻿namespace DiscountСardApp.Models
+﻿namespace DiscountСardApp.Domain.Entities
 {
     public class DiscountCard
     {
