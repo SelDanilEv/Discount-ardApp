@@ -1,5 +1,4 @@
 using AutoMapper;
-using Discount—ardApp.Application.Models.V1.Bank.Requests;
 using Discount—ardApp.Application.Models.V1.Bank.Results;
 using FluentValidation;
 using MediatR;
@@ -30,7 +29,6 @@ namespace Discount—ardApp.Application.Modules.Bank.Commands
 
         public async Task<BankResult> Handle(DeleteBankCommand request, CancellationToken cancellationToken)
         {
-            var deleteBankModel = _mapper.Map<DeleteBank>(request);
 
             throw new NotImplementedException();
             //return await _bankService.DeleteBankAsync(deleteBankModel);

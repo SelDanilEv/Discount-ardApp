@@ -8,7 +8,7 @@ namespace  DiscountСardApp.Infrastructure
 
         public const string ApiDescription = "MCC codes mapper";
 
-        public const string ApiAuthor = "Defender SD";
+        public const string ApiAuthor = "Defender SD, Julia";
 
         public const string ApiAuthorEmail = "seldanilev@gmail.com";
 

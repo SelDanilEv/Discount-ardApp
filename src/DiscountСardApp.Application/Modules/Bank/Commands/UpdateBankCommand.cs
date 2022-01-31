@@ -1,5 +1,4 @@
 using AutoMapper;
-using Discount—ardApp.Application.Models.V1.Bank.Requests;
 using Discount—ardApp.Application.Models.V1.Bank.Results;
 using FluentValidation;
 using MediatR;
@@ -32,7 +31,6 @@ namespace Discount—ardApp.Application.Modules.Bank.Commands
 
         public async Task<BankResult> Handle(UpdateBankCommand request, CancellationToken cancellationToken)
         {
-            var updateBankModel = _mapper.Map<UpdateBank>(request);
 
             throw new NotImplementedException();
             //return await _bankService.UpdateBankAsync(updateBankModel);

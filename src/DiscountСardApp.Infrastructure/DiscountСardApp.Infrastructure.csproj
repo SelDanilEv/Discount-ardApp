@@ -16,6 +16,11 @@
 
   <ItemGroup>
     <Folder Include="Clients\" />
+    <Folder Include="Contexts\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DiscountСardApp.Domain\DiscountСardApp.Domain.csproj" />
   </ItemGroup>
 
 </Project>
