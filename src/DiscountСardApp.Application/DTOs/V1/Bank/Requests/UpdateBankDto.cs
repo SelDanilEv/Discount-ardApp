@@ -1,7 +1,8 @@
 ﻿namespace DiscountСardApp.Application.DTOs.V1.Bank.Requests
 {
-    public class UpdateBankDto : BaseBankDto
+    public class UpdateBankDto
     {
-        public string Name { get; set; }
+        public Guid Id { get; set; }
+        public string? Name { get; set; }
     }
 }

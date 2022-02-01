@@ -7,15 +7,14 @@ namespace Discount—ardApp.Application.Modules.Bank.Commands
 {
     public sealed class CreateBankCommand : IRequest<BankResult>
     {
-        public Guid Id { get; set; }
-        public string Name { get; set; }
+        public string? Name { get; set; }
     }
 
     public sealed class CreateBankCommandValidator : AbstractValidator<CreateBankCommand>
     {
         public CreateBankCommandValidator()
         {
-            RuleFor(x => x.Name).NotEmpty().WithMessage("Please provide the bank name!");
+            RuleFor(x => x.Name).NotNull().NotEmpty().WithMessage("Please provide the bank name!");
         }
     }
 

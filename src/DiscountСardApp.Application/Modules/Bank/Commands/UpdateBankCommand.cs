@@ -8,7 +8,7 @@ namespace Discount—ardApp.Application.Modules.Bank.Commands
     public sealed class UpdateBankCommand : IRequest<BankResult>
     {
         public Guid Id { get; set; }
-        public string Name { get; set; }
+        public string? Name { get; set; }
     }
 
     public sealed class UpdateBankCommandValidator : AbstractValidator<UpdateBankCommand>
@@ -16,7 +16,7 @@ namespace Discount—ardApp.Application.Modules.Bank.Commands
         public UpdateBankCommandValidator()
         {
             RuleFor(x => x.Id).NotEmpty().WithMessage("Please provide the bank id!");
-            RuleFor(x => x.Name).NotEmpty().WithMessage("Please provide the bank name!");
+            RuleFor(x => x.Name).NotNull().NotEmpty().WithMessage("Please provide the bank name!");
         }
     }
 

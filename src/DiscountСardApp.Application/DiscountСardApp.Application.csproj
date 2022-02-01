@@ -24,4 +24,10 @@
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="6.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\DiscountCardApp.Common\DiscountСardApp.Common.csproj" />
+    <ProjectReference Include="..\DiscountСardApp.Domain\DiscountСardApp.Domain.csproj" />
+    <ProjectReference Include="..\DiscountСardApp.Infrastructure\DiscountСardApp.Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -2,6 +2,9 @@
 {
     public class BankResult : BaseBankModel
     {
-        public string Name { get; set; }
+        public string? Name { get; set; }
+
+        public List<Domain.Entities.DiscountCard> DiscountCards { get; set; } 
+            = new List<Domain.Entities.DiscountCard>();
     }
 }
