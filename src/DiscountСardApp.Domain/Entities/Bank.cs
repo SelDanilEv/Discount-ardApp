@@ -3,8 +3,8 @@
     public class Bank
     {
         public Guid Id { get; set; }
-        public string Name { get; set; }
+        public string Name { get; set; } = String.Empty;
 
-        public ICollection<DiscountCard> DiscountCards { get; set; }
+        public List<DiscountCard> DiscountCards { get; set; } = new List<DiscountCard>();
     }
 }

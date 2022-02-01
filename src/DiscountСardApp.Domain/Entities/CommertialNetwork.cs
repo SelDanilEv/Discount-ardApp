@@ -3,8 +3,8 @@
     public class CommertialNetwork
     {
         public Guid Id { get; set; }
-        public string Name { get; set; }
+        public string Name { get; set; } = String.Empty;
 
-        public ICollection<Store> Stores { get; set; }
+        public List<Store> Stores { get; set; } = new List<Store>();
     }
 }
