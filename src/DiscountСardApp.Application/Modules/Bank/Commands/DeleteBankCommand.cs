@@ -1,9 +1,9 @@
-using AutoMapper;
-using Discount—ardApp.Application.Models.V1.Bank.Results;
+Ôªøusing AutoMapper;
+using Discount–°ardApp.Application.Models.V1.Bank.Results;
 using FluentValidation;
 using MediatR;
 
-namespace Discount—ardApp.Application.Modules.Bank.Commands
+namespace Discount–°ardApp.Application.Modules.Bank.Commands
 {
     public sealed class DeleteBankCommand : IRequest<BankResult>
     {

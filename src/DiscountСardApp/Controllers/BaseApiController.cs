@@ -1,8 +1,8 @@
-using AutoMapper;
+﻿using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Discount�ardApp.Controllers
+namespace DiscountСardApp.Controllers
 {
     public class BaseApiController : ControllerBase
     {

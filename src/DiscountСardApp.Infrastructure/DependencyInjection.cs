@@ -1,9 +1,9 @@
-using System.Reflection;
+Ôªøusing System.Reflection;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 
-namespace Discount—ardApp.Infrastructure
+namespace Discount–°ardApp.Infrastructure
 {
     public static class DependencyInjection
     {
@@ -37,7 +37,6 @@ namespace Discount—ardApp.Infrastructure
 
         private static void RegisterDatabase(IServiceCollection services)
         {
-            // configure Mongo DB database with the driver
             services.AddMySQLDatabase();
 
             //TODO: Register repositories here

@@ -1,11 +1,11 @@
-using System;
+﻿using System;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
-namespace Discount�ardApp.Infrastructure.Configuration
+namespace DiscountСardApp.Infrastructure.Configuration
 {
    public sealed class ConfigureSwaggerOptions : IConfigureOptions<SwaggerGenOptions>
     {

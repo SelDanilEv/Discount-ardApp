@@ -1,4 +1,4 @@
-using Discount�ardApp.Infrastructure.Extensions;
+﻿using DiscountСardApp.Infrastructure.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 

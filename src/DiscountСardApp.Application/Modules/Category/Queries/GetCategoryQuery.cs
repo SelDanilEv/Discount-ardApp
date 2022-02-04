@@ -1,9 +1,9 @@
-using AutoMapper;
-using Discount—ardApp.Application.Models.V1.Category.Results;
+Ôªøusing AutoMapper;
+using Discount–°ardApp.Application.Models.V1.Category.Results;
 using FluentValidation;
 using MediatR;
 
-namespace Discount—ardApp.Application.Modules.Category.Queries
+namespace Discount–°ardApp.Application.Modules.Category.Queries
 {
     public sealed class GetCategoryQuery : IRequest<CategoryResult>
     {

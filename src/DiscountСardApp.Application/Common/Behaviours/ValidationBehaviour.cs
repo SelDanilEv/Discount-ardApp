@@ -1,8 +1,8 @@
-using FluentValidation;
+Ôªøusing FluentValidation;
 using MediatR;
-using ValidationException = Discount—ardApp.Application.Common.Exceptions.ValidationException;
+using ValidationException = Discount–°ardApp.Application.Common.Exceptions.ValidationException;
 
-namespace Discount—ardApp.Application.Common.Behaviours
+namespace Discount–°ardApp.Application.Common.Behaviours
 {
     public sealed class ValidationBehaviour<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
         where TRequest : IRequest<TResponse>

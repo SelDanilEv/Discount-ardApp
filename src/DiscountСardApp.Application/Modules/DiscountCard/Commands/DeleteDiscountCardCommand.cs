@@ -1,9 +1,9 @@
-using AutoMapper;
-using Discount—ardApp.Application.Models.V1.DiscountCard.Results;
+Ôªøusing AutoMapper;
+using Discount–°ardApp.Application.Models.V1.DiscountCard.Results;
 using FluentValidation;
 using MediatR;
 
-namespace Discount—ardApp.Application.Modules.DiscountCard.Commands
+namespace Discount–°ardApp.Application.Modules.DiscountCard.Commands
 {
     public sealed class DeleteDiscountCardCommand : IRequest<DiscountCardResult>
     {

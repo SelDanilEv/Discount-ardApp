@@ -1,13 +1,13 @@
-using System.Text.Json.Serialization;
-using Discount補rdApp.Application;
-using Discount補rdApp.Common.Extensions;
-using Discount補rdApp.Infrastructure.Configuration;
-using Discount補rdApp.Infrastructure.Swagger;
+锘縰sing System.Text.Json.Serialization;
+using Discount小ardApp.Application;
+using Discount小ardApp.Common.Extensions;
+using Discount小ardApp.Infrastructure.Configuration;
+using Discount小ardApp.Infrastructure.Swagger;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
-namespace Discount補rdApp.Infrastructure.Extensions
+namespace Discount小ardApp.Infrastructure.Extensions
 {
     public static class ServiceCollectionExtensions
     {

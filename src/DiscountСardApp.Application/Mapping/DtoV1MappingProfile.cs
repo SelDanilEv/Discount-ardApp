@@ -1,11 +1,11 @@
-using AutoMapper;
-using Discount補rdApp.Application.DTOs.V1.Bank.Requests;
-using Discount補rdApp.Application.DTOs.V1.Bank.Results;
-using Discount補rdApp.Application.Models.V1.Bank.Results;
-using Discount補rdApp.Application.Modules.Bank.Commands;
-using Discount補rdApp.Application.Modules.Bank.Queries;
+锘縰sing AutoMapper;
+using Discount小ardApp.Application.DTOs.V1.Bank.Requests;
+using Discount小ardApp.Application.DTOs.V1.Bank.Results;
+using Discount小ardApp.Application.Models.V1.Bank.Results;
+using Discount小ardApp.Application.Modules.Bank.Commands;
+using Discount小ardApp.Application.Modules.Bank.Queries;
 
-namespace Discount補rdApp.Application.Mapping
+namespace Discount小ardApp.Application.Mapping
 {
     public sealed class DtoV1MappingProfile : Profile
     {

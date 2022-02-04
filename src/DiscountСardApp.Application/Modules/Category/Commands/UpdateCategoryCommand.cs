@@ -1,10 +1,10 @@
-using AutoMapper;
-using Discount—ardApp.Application.Models.V1.Category.Results;
-using Discount—ardApp.Domain.Entities;
+Ôªøusing AutoMapper;
+using Discount–°ardApp.Application.Models.V1.Category.Results;
+using Discount–°ardApp.Domain.Entities;
 using FluentValidation;
 using MediatR;
 
-namespace Discount—ardApp.Application.Modules.Category.Commands
+namespace Discount–°ardApp.Application.Modules.Category.Commands
 {
     public sealed class UpdateCategoryCommand : IRequest<CategoryResult>
     {

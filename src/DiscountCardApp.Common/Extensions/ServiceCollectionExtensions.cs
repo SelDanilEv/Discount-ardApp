@@ -1,9 +1,6 @@
-using System.ComponentModel.DataAnnotations;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Options;
+﻿using Microsoft.Extensions.DependencyInjection;
 
-namespace Discount�ardApp.Common.Extensions
+namespace DiscountСardApp.Common.Extensions
 {
     public static class ServiceCollectionExtensions
     {
