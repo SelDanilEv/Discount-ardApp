@@ -49,8 +49,10 @@ namespace DiscountСardApp.Infrastructure
         private static void AddMySQLDatabase(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddDbContext<ApplicationDbContext>(options =>
-            options.UseMySql(
-                configuration.GetConnectionString("MySQLConnection"), new MySqlServerVersion(new Version(8, 0, 28))));
+                options.UseMySql(
+                    configuration.GetConnectionString("MySQLConnection"),
+                    new MySqlServerVersion(new Version(8, 0, 28))));
+
         }
 
         #endregion
