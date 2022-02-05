@@ -4,6 +4,7 @@ using DiscountСardApp.Application.DTOs.V1.Bank.Results;
 using DiscountСardApp.Application.Models.V1.Bank.Results;
 using DiscountСardApp.Application.Modules.Bank.Commands;
 using DiscountСardApp.Application.Modules.Bank.Queries;
+using DiscountСardApp.Domain.Entities;
 
 namespace DiscountСardApp.Application.Mapping
 {
@@ -43,7 +44,7 @@ namespace DiscountСardApp.Application.Mapping
 
         private void ConfigureDomainMappings()
         {
-            //TODO: domain mapping here
+            CreateMap<Bank, BankResult>();
         }
 
         private void ConfigureSharedMappings()
