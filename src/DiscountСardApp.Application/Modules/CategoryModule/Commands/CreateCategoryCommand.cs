@@ -7,7 +7,7 @@ namespace DiscountСardApp.Application.Modules.CategoryModule.Commands
 {
     public sealed class CreateCategoryCommand : IRequest<CategoryResult>
     {
-        public string? CategoryName { get; set; }
+        public string? Name { get; set; }
 
         public Guid DiscountCardId { get; set; }
     }
@@ -16,7 +16,7 @@ namespace DiscountСardApp.Application.Modules.CategoryModule.Commands
     {
         public CreateCategoryCommandValidator()
         {
-            RuleFor(x => x.CategoryName).NotNull().NotEmpty()
+            RuleFor(x => x.Name).NotNull().NotEmpty()
                 .WithMessage("Please provide the category name!");
 
             RuleFor(x => x.DiscountCardId).NotNull().NotEmpty()

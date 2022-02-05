@@ -1,4 +1,4 @@
-﻿namespace DiscountСardApp.Application.DTOs.V1.Bank.Requests
+﻿namespace DiscountСardApp.Application.DTOs.V1.BankDto.Requests
 {
     public class DeleteBankDto
     {

@@ -1,6 +1,8 @@
-﻿namespace DiscountСardApp.Domain.Entities
+﻿using DiscountСardApp.Domain.Entities;
+
+namespace DiscountСardApp.Application.DTOs.V1.MCCCodeDto.Results
 {
-    public class MCCCode
+    public class MCCCodeResultDto
     {
         public Guid Id { get; set; }
         public int Code { get; set; }

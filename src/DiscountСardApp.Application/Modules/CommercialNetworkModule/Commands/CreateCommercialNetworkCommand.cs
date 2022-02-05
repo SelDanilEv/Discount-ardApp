@@ -8,7 +8,7 @@ namespace DiscountСardApp.Application.Modules.CommercialNetworkModule.Commands
 {
     public sealed class CreateCommercialNetworkCommand : IRequest<CommercialNetworkResult>
     {
-        public string? Name { get; set; }
+        public string Name { get; set; } = String.Empty;
     }
 
     public sealed class CreateCommercialNetworkCommandValidator : AbstractValidator<CreateCommercialNetworkCommand>
