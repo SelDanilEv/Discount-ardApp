@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 using DiscountСardApp.Application.DTOs.V1.Bank.Results;
 using DiscountСardApp.Application.DTOs.V1.Bank.Requests;
+using DiscountСardApp.Application.Modules.BankModule.Commands;
+using DiscountСardApp.Application.Modules.BankModule.Queries;
 
 namespace DiscountСardApp.Controllers.V1
 {
@@ -23,14 +25,9 @@ namespace DiscountСardApp.Controllers.V1
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult<List<BankResultDto>>> GetBanks()
         {
-            throw new NotImplementedException();
+            var query = new GetAllBanksQuery();
 
-            //var command = new GetNotificationReportByRequestIdCommand
-            //{
-            //    NotificationRequestId = requestId,
-            //    WithDetails = withDetails
-            //};
-            //return await ProcessApiCallAsync<GetNotificationReportByRequestIdCommand, ReportResultDto>(command);
+            return await ProcessApiCallAsync<GetAllBanksQuery, List<BankResultDto>>(query);
         }
 
         [HttpGet("GetBank")]
@@ -39,14 +36,12 @@ namespace DiscountСardApp.Controllers.V1
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult<BankResultDto>> GetBank(GetBankDto getBankDto)
         {
-            throw new NotImplementedException();
+            var query = new GetBankQuery
+            {
+                Id = getBankDto.Id
+            };
 
-            //var command = new GetNotificationReportByRequestIdCommand
-            //{
-            //    NotificationRequestId = requestId,
-            //    WithDetails = withDetails
-            //};
-            //return await ProcessApiCallAsync<GetNotificationReportByRequestIdCommand, ReportResultDto>(command);
+            return await ProcessApiCallAsync<GetBankQuery, BankResultDto>(query);
         }
 
         [HttpPost("CreateBank")]
@@ -55,14 +50,12 @@ namespace DiscountСardApp.Controllers.V1
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult<BankResultDto>> CreateBank(CreateBankDto createBankDto)
         {
-            throw new NotImplementedException();
+            var command = new CreateBankCommand
+            {
+                Name = createBankDto.Name,
+            };
 
-            //var command = new GetNotificationReportByRequestIdCommand
-            //{
-            //    NotificationRequestId = requestId,
-            //    WithDetails = withDetails
-            //};
-            //return await ProcessApiCallAsync<GetNotificationReportByRequestIdCommand, ReportResultDto>(command);
+            return await ProcessApiCallAsync<CreateBankCommand, BankResultDto>(command);
         }
 
         [HttpPut("UpdateBank")]
@@ -71,14 +64,13 @@ namespace DiscountСardApp.Controllers.V1
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult<BankResultDto>> UpdateBank(UpdateBankDto updateBankDto)
         {
-            throw new NotImplementedException();
+            var command = new UpdateBankCommand
+            {
+                Id = updateBankDto.Id,
+                Name = updateBankDto.Name,
+            };
 
-            //var command = new GetNotificationReportByRequestIdCommand
-            //{
-            //    NotificationRequestId = requestId,
-            //    WithDetails = withDetails
-            //};
-            //return await ProcessApiCallAsync<GetNotificationReportByRequestIdCommand, ReportResultDto>(command);
+            return await ProcessApiCallAsync<UpdateBankCommand, BankResultDto>(command);
         }
 
         [HttpDelete("DeleteBank")]
@@ -87,14 +79,12 @@ namespace DiscountСardApp.Controllers.V1
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult<BankResultDto>> DeleteBank(DeleteBankDto deleteBankDto)
         {
-            throw new NotImplementedException();
+            var command = new DeleteBankCommand
+            {
+                Id = deleteBankDto.Id,
+            };
 
-            //var command = new GetNotificationReportByRequestIdCommand
-            //{
-            //    NotificationRequestId = requestId,
-            //    WithDetails = withDetails
-            //};
-            //return await ProcessApiCallAsync<GetNotificationReportByRequestIdCommand, ReportResultDto>(command);
+            return await ProcessApiCallAsync<DeleteBankCommand, BankResultDto>(command);
         }
     }
 }
