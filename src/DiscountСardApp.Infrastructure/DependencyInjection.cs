@@ -1,4 +1,6 @@
 ﻿using System.Reflection;
+using DiscountСardApp.Infrastructure.Contexts;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
@@ -11,7 +13,7 @@ namespace DiscountСardApp.Infrastructure
         {
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
-            RegisterDatabase(services);
+            RegisterDatabase(services, configuration);
 
             RegisterApiClients(services);
 
@@ -35,26 +37,20 @@ namespace DiscountСardApp.Infrastructure
 
         #region Database configuration.
 
-        private static void RegisterDatabase(IServiceCollection services)
+        private static void RegisterDatabase(IServiceCollection services, IConfiguration configuration)
         {
-            services.AddMySQLDatabase();
+            services.AddMySQLDatabase(configuration);
 
             //TODO: Register repositories here
             // register repositories to work with the data in database
             //services.AddSingleton<IRepository, Repository>();
         }
 
-        private static void AddMySQLDatabase(this IServiceCollection services)
+        private static void AddMySQLDatabase(this IServiceCollection services, IConfiguration configuration)
         {
-            //TODO: Register our database here
-
-            // Sample:
-            //services
-            //    .AddSingleton<IMongoClient, MongoClient>(serviceProvider =>
-            //        new MongoClient(serviceProvider.GetRequiredService<IOptions<MongoDbOptions>>().Value.ConnectionString))
-            //    .AddSingleton<IMongoDatabase>(serviceProvider => serviceProvider
-            //        .GetRequiredService<IMongoClient>()
-            //        .GetDatabase(serviceProvider.GetRequiredService<IOptions<MongoDbOptions>>().Value.DatabaseName));
+            services.AddDbContext<ApplicationDbContext>(options =>
+            options.UseMySql(
+                configuration.GetConnectionString("MySQLConnection"), new MySqlServerVersion(new Version(8, 0, 28))));
         }
 
         #endregion
