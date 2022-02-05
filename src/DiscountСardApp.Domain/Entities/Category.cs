@@ -1,6 +1,6 @@
 ﻿namespace DiscountСardApp.Domain.Entities
 {
-    public class Caterogy
+    public class Category
     {
         public Guid Id { get; set; }
         public string CategoryName { get; set; } = String.Empty;
