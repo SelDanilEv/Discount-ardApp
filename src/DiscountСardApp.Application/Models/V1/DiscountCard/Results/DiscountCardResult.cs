@@ -7,7 +7,7 @@
 
         public Guid BankId { get; set; }
 
-        public List<Domain.Entities.Caterogy> Caterogies { get; set; } = 
-            new List<Domain.Entities.Caterogy>();
+        public List<Domain.Entities.Category> Caterogies { get; set; } = 
+            new List<Domain.Entities.Category>();
     }
 }
