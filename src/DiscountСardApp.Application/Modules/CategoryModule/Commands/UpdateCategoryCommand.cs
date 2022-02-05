@@ -9,7 +9,7 @@ namespace DiscountСardApp.Application.Modules.CategoryModule.Commands
     public sealed class UpdateCategoryCommand : IRequest<CategoryResult>
     {
         public Guid Id { get; set; }
-        public string CategoryName { get; set; } = String.Empty;
+        public string Name { get; set; } = String.Empty;
 
         public Guid DiscountCardId { get; set; }
 
@@ -22,7 +22,7 @@ namespace DiscountСardApp.Application.Modules.CategoryModule.Commands
         {
             RuleFor(x => x.Id).NotEmpty().WithMessage("Please provide the category id!");
 
-            RuleFor(x => x.CategoryName).NotNull().NotEmpty()
+            RuleFor(x => x.Name).NotNull().NotEmpty()
                 .WithMessage("Please provide the category name!");
 
             RuleFor(x => x.DiscountCardId).NotNull().NotEmpty()

@@ -5,15 +5,15 @@ using MediatR;
 
 namespace DiscountСardApp.Application.Modules.CategoryModule.Commands
 {
-    public sealed class AddCodeFromCategoryCommand : IRequest<DiscountCardResult>
+    public sealed class AddCodeToCategoryCommand : IRequest<DiscountCardResult>
     {
         public Guid MCCCodeId { get; set; }
         public Guid CategoryId { get; set; }
     }
 
-    public sealed class AddCodeFromCategoryValidator : AbstractValidator<AddCodeFromCategoryCommand>
+    public sealed class AddCodeToCategoryValidator : AbstractValidator<AddCodeToCategoryCommand>
     {
-        public AddCodeFromCategoryValidator()
+        public AddCodeToCategoryValidator()
         {
             RuleFor(x => x.MCCCodeId).NotNull().NotEmpty()
                 .WithMessage("Please provide the code id!");
@@ -23,16 +23,16 @@ namespace DiscountСardApp.Application.Modules.CategoryModule.Commands
         }
     }
 
-    public sealed class AddCodeFromCategoryHandler : IRequestHandler<AddCodeFromCategoryCommand, DiscountCardResult>
+    public sealed class AddCodeToCategoryHandler : IRequestHandler<AddCodeToCategoryCommand, DiscountCardResult>
     {
         private readonly IMapper _mapper;
 
-        public AddCodeFromCategoryHandler(IMapper mapper)
+        public AddCodeToCategoryHandler(IMapper mapper)
         {
             _mapper = mapper;
         }
 
-        public async Task<DiscountCardResult> Handle(AddCodeFromCategoryCommand request, CancellationToken cancellationToken)
+        public async Task<DiscountCardResult> Handle(AddCodeToCategoryCommand request, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
             //return await _DiscountCardService.AddCategoryAsync(AddCategoryModel);

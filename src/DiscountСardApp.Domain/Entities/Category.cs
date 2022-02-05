@@ -3,7 +3,8 @@
     public class Category
     {
         public Guid Id { get; set; }
-        public string CategoryName { get; set; } = String.Empty;
+
+        public string Name { get; set; } = String.Empty;
 
         public Guid DiscountCardId { get; set; }
         public DiscountCard DiscountCard { get; set; } = new DiscountCard();

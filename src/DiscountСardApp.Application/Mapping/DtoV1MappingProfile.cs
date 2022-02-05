@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using DiscountСardApp.Application.DTOs.V1.Bank.Requests;
-using DiscountСardApp.Application.DTOs.V1.Bank.Results;
+using DiscountСardApp.Application.DTOs.V1.BankDto.Requests;
+using DiscountСardApp.Application.DTOs.V1.BankDto.Results;
 using DiscountСardApp.Application.Models.V1.Bank.Results;
 using DiscountСardApp.Application.Modules.BankModule.Commands;
 using DiscountСardApp.Application.Modules.BankModule.Queries;

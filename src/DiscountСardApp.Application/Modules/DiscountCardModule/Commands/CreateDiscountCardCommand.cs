@@ -9,6 +9,7 @@ namespace DiscountСardApp.Application.Modules.DiscountCardModule.Commands
     {
         public string? Name { get; set; }
         public string? Conditions { get; set; }
+        public Guid BankId { get; set; }
     }
 
     public sealed class CreateDiscountCardCommandValidator : AbstractValidator<CreateDiscountCardCommand>
@@ -17,8 +18,8 @@ namespace DiscountСardApp.Application.Modules.DiscountCardModule.Commands
         {
             RuleFor(x => x.Name).NotNull().NotEmpty().WithMessage("Please provide the card name!");
 
-            RuleFor(x => x.Conditions).NotNull().NotEmpty()
-                .WithMessage("Please provide the card conditions!");
+            RuleFor(x => x.BankId).NotNull().NotEmpty()
+                .WithMessage("Please provide the bank id!");
         }
     }
 

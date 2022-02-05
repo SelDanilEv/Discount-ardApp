@@ -2,7 +2,7 @@
 {
     public class DiscountCardResult : BaseDiscountCardModel
     {
-        public string? CardName { get; set; } = String.Empty;
+        public string? Name { get; set; } = String.Empty;
         public string? Conditions { get; set; } = String.Empty;
 
         public Guid BankId { get; set; }
