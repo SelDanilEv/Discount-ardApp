@@ -4,7 +4,7 @@
     {
         public Guid Id { get; set; }
 
-        public int Code { get; set; }
+        public Guid MCCCodeId { get; set; }
         public MCCCode MCCCode { get; set; } = new MCCCode();
 
         public Guid CommertialNetworkId { get; set; }

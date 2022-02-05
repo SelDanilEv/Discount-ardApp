@@ -2,8 +2,8 @@
 using DiscountСardApp.Application.DTOs.V1.Bank.Requests;
 using DiscountСardApp.Application.DTOs.V1.Bank.Results;
 using DiscountСardApp.Application.Models.V1.Bank.Results;
-using DiscountСardApp.Application.Modules.Bank.Commands;
-using DiscountСardApp.Application.Modules.Bank.Queries;
+using DiscountСardApp.Application.Modules.BankModule.Commands;
+using DiscountСardApp.Application.Modules.BankModule.Queries;
 using DiscountСardApp.Domain.Entities;
 
 namespace DiscountСardApp.Application.Mapping
