@@ -4,6 +4,6 @@
     {
         public string? Name { get; set; } = String.Empty;
 
-        public List<Domain.Entities.Store> Stores { get; set; } = new List<Domain.Entities.Store>();
+        public List<Domain.EntityModels.Store> Stores { get; set; } = new List<Domain.EntityModels.Store>();
     }
 }

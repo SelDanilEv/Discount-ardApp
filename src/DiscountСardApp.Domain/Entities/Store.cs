@@ -5,10 +5,10 @@
         public Guid Id { get; set; }
 
         public Guid MCCCodeId { get; set; }
-        public MCCCode MCCCode { get; set; } = new MCCCode();
+        public MCCCode? MCCCode { get; set; } = null;
 
         public Guid CommertialNetworkId { get; set; }
-        public CommertialNetwork CommertialNetwork { get; set; } = new CommertialNetwork();
+        public CommertialNetwork? CommertialNetwork { get; set; } = null;
 
         public string Address { get; set; } = String.Empty;
     }

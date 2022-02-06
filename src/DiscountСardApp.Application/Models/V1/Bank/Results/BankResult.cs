@@ -4,7 +4,7 @@
     {
         public string? Name { get; set; } = string.Empty;
 
-        public List<Domain.Entities.DiscountCard> DiscountCards { get; set; } 
-            = new List<Domain.Entities.DiscountCard>();
+        public List<Domain.EntityModels.DiscountCard>? DiscountCards { get; set; }
+            = null;
     }
 }

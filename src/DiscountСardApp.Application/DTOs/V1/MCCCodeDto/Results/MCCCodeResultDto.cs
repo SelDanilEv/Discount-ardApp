@@ -1,4 +1,4 @@
-﻿using DiscountСardApp.Domain.Entities;
+﻿using DiscountСardApp.Domain.EntityModels;
 
 namespace DiscountСardApp.Application.DTOs.V1.MCCCodeDto.Results
 {

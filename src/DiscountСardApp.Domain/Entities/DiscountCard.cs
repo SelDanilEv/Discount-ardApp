@@ -7,8 +7,8 @@
         public string Conditions { get; set; } = String.Empty;
 
         public Guid BankId { get; set; }
-        public Bank Bank { get; set; } = new Bank();
+        public Bank? Bank { get; set; } = null;
 
-        public List<Category> Caterogies { get; set; } = new List<Category>();
+        public List<Category>? Caterogies { get; set; } = null;
     }
 }

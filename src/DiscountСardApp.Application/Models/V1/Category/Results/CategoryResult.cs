@@ -1,4 +1,4 @@
-﻿using DiscountСardApp.Domain.Entities;
+﻿using DiscountСardApp.Domain.EntityModels;
 
 namespace DiscountСardApp.Application.Models.V1.Category.Results
 {
@@ -8,6 +8,6 @@ namespace DiscountСardApp.Application.Models.V1.Category.Results
 
         public Guid DiscountCardId { get; set; }
 
-        public List<Domain.Entities.MCCCode> MCCCodes { get; set; } = new List<Domain.Entities.MCCCode>();
+        public List<Domain.EntityModels.MCCCode> MCCCodes { get; set; } = new List<Domain.EntityModels.MCCCode>();
     }
 }

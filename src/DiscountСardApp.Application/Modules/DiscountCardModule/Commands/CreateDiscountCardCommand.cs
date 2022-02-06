@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
 using DiscountСardApp.Application.Models.V1.DiscountCard.Results;
+using DiscountСardApp.Domain.Entities;
+using DiscountСardApp.Infrastructure.Contexts;
 using FluentValidation;
 using MediatR;
 
@@ -26,16 +28,24 @@ namespace DiscountСardApp.Application.Modules.DiscountCardModule.Commands
     public sealed class CreateDiscountCardCommandHandler : IRequestHandler<CreateDiscountCardCommand, DiscountCardResult>
     {
         private readonly IMapper _mapper;
+        private readonly ApplicationDbContext _dbContext;
 
-        public CreateDiscountCardCommandHandler(IMapper mapper)
+        public CreateDiscountCardCommandHandler(ApplicationDbContext dbContext, IMapper mapper)
         {
             _mapper = mapper;
+            _dbContext = dbContext;
         }
 
         public async Task<DiscountCardResult> Handle(CreateDiscountCardCommand request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
-            //return await _DiscountCardService.CreateDiscountCardAsync(createDiscountCardModel);
+            var newDiscountCard = _mapper.Map<DiscountCard>(request);
+
+            await _dbContext.DiscountCards.AddAsync(newDiscountCard);
+            await _dbContext.SaveChangesAsync();
+
+            var bankResult = _mapper.Map<DiscountCardResult>(newDiscountCard);
+
+            return bankResult;
         }
     }
 }
