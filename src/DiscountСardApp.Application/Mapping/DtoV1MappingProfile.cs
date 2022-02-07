@@ -1,12 +1,17 @@
 ﻿using AutoMapper;
 using DiscountСardApp.Application.DTOs.V1.BankDto.Requests;
 using DiscountСardApp.Application.DTOs.V1.BankDto.Results;
+using DiscountСardApp.Application.DTOs.V1.CategoryDto.Requests;
+using DiscountСardApp.Application.DTOs.V1.CategoryDto.Results;
 using DiscountСardApp.Application.DTOs.V1.DiscountCardDto.Requests;
 using DiscountСardApp.Application.DTOs.V1.DiscountCardDto.Results;
 using DiscountСardApp.Application.Models.V1.Bank.Results;
+using DiscountСardApp.Application.Models.V1.Category.Results;
 using DiscountСardApp.Application.Models.V1.DiscountCard.Results;
 using DiscountСardApp.Application.Modules.BankModule.Commands;
 using DiscountСardApp.Application.Modules.BankModule.Queries;
+using DiscountСardApp.Application.Modules.CategoryModule.Commands;
+using DiscountСardApp.Application.Modules.CategoryModule.Queries;
 using DiscountСardApp.Application.Modules.DiscountCardModule.Commands;
 using DiscountСardApp.Application.Modules.DiscountCardModule.Queries;
 using DiscountСardApp.Domain.EntityModels;
@@ -37,13 +42,21 @@ namespace DiscountСardApp.Application.Mapping
 
             #endregion
 
-
             #region DiscountCard
 
             CreateMap<GetDiscountCardDto, GetDiscountCardQuery>();
             CreateMap<CreateDiscountCardDto, CreateDiscountCardCommand>();
             CreateMap<UpdateDiscountCardDto, UpdateDiscountCardCommand>();
             CreateMap<DeleteDiscountCardDto, DeleteDiscountCardCommand>();
+
+            #endregion
+
+            #region Category
+
+            CreateMap<GetCategoryDto, GetCategoryQuery>();
+            CreateMap<CreateCategoryDto, CreateCategoryCommand>();
+            CreateMap<UpdateCategoryDto, UpdateCategoryCommand>();
+            CreateMap<DeleteCategoryDto, DeleteCategoryCommand>();
 
             #endregion
         }
@@ -59,6 +72,12 @@ namespace DiscountСardApp.Application.Mapping
             #region DiscountCard
 
             CreateMap<DiscountCardResult, DiscountCardResultDto>();
+
+            #endregion
+
+            #region Category
+
+            CreateMap<CategoryResult, CategoryResultDto>();
 
             #endregion
         }
@@ -83,7 +102,14 @@ namespace DiscountСardApp.Application.Mapping
 
             #endregion
 
+            #region Category
 
+            CreateMap<CreateCategoryCommand, Domain.Entities.Category>();
+            CreateMap<Domain.Entities.Category, CategoryResult>();
+
+            CreateMap<Domain.Entities.Category, Category>();
+
+            #endregion
         }
 
         private void ConfigureSharedMappings()

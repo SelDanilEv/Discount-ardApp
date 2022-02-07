@@ -31,7 +31,10 @@ namespace DiscountСardApp.Application.Modules.BankModule.Queries
 
         public async Task<List<BankResult>> Handle(GetAllBanksQuery request, CancellationToken cancellationToken)
         {
-            var bankList = await _dbContext.Banks.Include(b => b.DiscountCards).AsNoTracking().ToListAsync();
+            var bankList = await _dbContext.Banks
+                .Include(b => b.DiscountCards)
+                .ThenInclude(x => x.Categories)
+                .ThenInclude(x => x.MCCCodes).ToListAsync();
 
             var banksResult = _mapper.Map<List<BankResult>>(bankList);
 

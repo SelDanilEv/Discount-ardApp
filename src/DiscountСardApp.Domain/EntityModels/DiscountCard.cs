@@ -8,6 +8,6 @@
 
         public Guid BankId { get; set; }
 
-        public List<Category>? Caterogies { get; set; } = null;
+        public List<Category>? Categories { get; set; } = null;
     }
 }

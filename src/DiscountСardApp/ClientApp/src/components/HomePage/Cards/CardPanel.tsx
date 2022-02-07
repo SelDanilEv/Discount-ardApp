@@ -14,6 +14,9 @@ const CardPanel = (props: any) => {
   const [card, setCard] = useState<any>({});
   const [cards, setCards] = useState<any[]>([]);
 
+  const [category, setCategory] = useState<any>({});
+  const [categories, setCategories] = useState<any[]>([]);
+
   useEffect(() => {
     wrapAPICall(loadBanksData, setLoadingState);
   }, [])
@@ -27,22 +30,8 @@ const CardPanel = (props: any) => {
 
     switch (response.status) {
       case 200:
-        console.log("loadBanksData");
-        console.log("result");
-        console.log(result);
-        console.log("bank1");
-        console.log(bank);
-
-        console.log("banks1");
-        console.log(banks);
         setBanks(result);
-        console.log("banks2");
-        console.log(banks);
-
         UpdateData((x: any) => x.id == bank.id)
-
-        console.log("bank2");
-        console.log(bank);
       case 400:
       default:
     }
@@ -51,6 +40,7 @@ const CardPanel = (props: any) => {
   const UpdateData = (bankPredicate: any) => {
 
     let selectedBank = banks.find(bankPredicate)
+    let selectedCard = cards.find(x => x.id = card.id)
 
     console.log("selectedBank");
     console.log(selectedBank);
@@ -58,6 +48,10 @@ const CardPanel = (props: any) => {
     if (selectedBank) {
       setBank(selectedBank);
       setCards(selectedBank.discountCards)
+
+      if (selectedCard) {
+        setCategories(selectedCard.caterogies)
+      }
     }
   };
 
@@ -131,7 +125,51 @@ const CardPanel = (props: any) => {
   const handleSelectCard = (event: SelectChangeEvent) => {
     let selectedCard = cards.find(x => x.id == event.target.value)
 
+    console.log("selectedCard")
+    console.log(selectedCard)
+
     setCard(selectedCard);
+    setCategories(selectedCard.categories);
+  };
+  //------------
+
+
+  //--- Category region ---
+  const handleCreateCategory = async (event: React.FormEvent<HTMLFormElement>) => {
+    wrapAPICall(async () => {
+      event.preventDefault();
+      const data = new FormData(event.currentTarget);
+
+      const requestData = {
+        Name: data.get("categoryname"),
+        DiscountCardId: card.id,
+      };
+
+      const response = await fetch("api/v1/Category/CreateCategory", {
+        method: "POST",
+        body: JSON.stringify(requestData),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      const result = await response.json();
+
+      switch (response.status) {
+        case 200:
+          setCategories([...categories, result])
+          break;
+        case 400:
+        default:
+      }
+    }, setLoadingState);
+  };
+
+  const handleSelectCategory = (event: SelectChangeEvent) => {
+    let selectedCategory = categories.find(x => x.id == event.target.value)
+
+    setCategory(selectedCategory);
+    // setCodes(selectedCard.mcccodes);
   };
   //------------
 
@@ -145,10 +183,11 @@ const CardPanel = (props: any) => {
         }}
       >
         <Box className="bankPanel" gridColumn="span 3">
-          <InputLabel id="demo-simple-select-label">Bank</InputLabel>
+          <InputLabel id="demo-simple-select-label">Банки</InputLabel>
           <Select
             value={bank?.name}
-            label="Bank"
+            fullWidth
+            label="Название банка"
             onChange={handleSelectBank}
           >
             {
@@ -159,29 +198,40 @@ const CardPanel = (props: any) => {
               })}
           </Select>
           <Box
-            component="form"
-            onSubmit={handleCreateBank}
-            sx={{ mt: 1 }}>
-            <TextField
-              name="bankname"
-              autoComplete="bankname"
-              label="Bank name"
-              margin="normal"
-              required
-            />
-            <Button
-              type="submit"
-              variant="contained"
-              disabled={loadingState.Loading}>
-              Create bank
-            </Button>
+            className="createPanel"
+            sx={{ mt: 1 }}
+          >
+            <Divider />
+            <InputLabel>Создать банк</InputLabel>
+            <Box
+              component="form"
+              onSubmit={handleCreateBank}
+              sx={{ mt: 1 }}>
+              <TextField
+                name="bankname"
+                autoComplete="bankname"
+                label="Название банка"
+                margin="normal"
+                fullWidth
+                required
+              />
+              <Button
+                type="submit"
+                variant="contained"
+                fullWidth
+                disabled={loadingState.Loading}>
+                Создать
+              </Button>
+            </Box>
           </Box>
         </Box>
+
         <Box className="cardPanel" gridColumn="span 3">
-          <InputLabel>Discount card</InputLabel>
+          <InputLabel>Дисконтные карты</InputLabel>
           <Select
             value={card?.name}
-            label="Card"
+            label="Карта"
+            fullWidth
             onChange={handleSelectCard}
           >
             {
@@ -194,37 +244,89 @@ const CardPanel = (props: any) => {
           <TextField
             name="conditions"
             autoComplete="conditions"
+            label="Примечания (условия)"
+            fullWidth
             value={card.conditions}
-            inputProps={
-              { readOnly: true, }
-            }
+            inputProps={{ readOnly: true, }}
+            InputLabelProps={{ shrink: true }}
             margin="normal"
           />
-          <Divider />
-          <InputLabel>Create card</InputLabel>
           <Box
-            component="form"
-            onSubmit={handleCreateCard}
+            className="createPanel"
             sx={{ mt: 1 }}>
-            <TextField
-              name="cardname"
-              autoComplete="cardname"
-              label="Card name"
-              margin="normal"
-              required
-            />
-            <TextField
-              name="conditions"
-              autoComplete="conditions"
-              label="Notes"
-              margin="normal"
-            />
-            <Button
-              type="submit"
-              variant="contained"
-              disabled={loadingState.Loading}>
-              Create card
-            </Button>
+            <Divider />
+            <InputLabel>Создать карту</InputLabel>
+            <Box
+              component="form"
+              onSubmit={handleCreateCard}
+              sx={{ mt: 1 }}>
+              <TextField
+                name="cardname"
+                autoComplete="cardname"
+                label="Название карты"
+                margin="normal"
+                fullWidth
+                required
+              />
+              <TextField
+                name="conditions"
+                autoComplete="conditions"
+                label="Примечания (условия)"
+                margin="normal"
+                fullWidth
+              />
+              <Button
+                type="submit"
+                variant="contained"
+                fullWidth
+                disabled={loadingState.Loading}>
+                Создать
+              </Button>
+            </Box>
+          </Box>
+        </Box>
+
+        <Box className="categoryPanel" gridColumn="span 3">
+          <InputLabel id="demo-simple-select-label">Категории</InputLabel>
+          <Select
+            value={category?.name}
+            fullWidth
+            label="Название категории"
+            onChange={handleSelectCategory}
+          >
+            {
+              categories?.map((category: any) => {
+                return (
+                  <MenuItem value={category.id}>{category.name}</MenuItem>
+                );
+              })}
+          </Select>
+          <Box
+            className="createPanel"
+            sx={{ mt: 1 }}
+          >
+            <Divider />
+            <InputLabel>Создать категорию</InputLabel>
+            <Box
+              component="form"
+              onSubmit={handleCreateCategory}
+              sx={{ mt: 1 }}>
+              <TextField
+                name="categoryname"
+                autoComplete="categoryname"
+                label="Название категории"
+                margin="normal"
+                fullWidth
+                required
+              />
+              <Button
+                type="submit"
+                variant="contained"
+                fullWidth
+                disabled={loadingState.Loading}>
+                Создать
+              </Button>
+            </Box>
           </Box>
         </Box>
       </Box>
