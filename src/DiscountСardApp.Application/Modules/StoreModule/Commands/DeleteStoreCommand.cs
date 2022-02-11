@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using DiscountСardApp.Application.Models.V1.Store.Results;
+using DiscountСardApp.Infrastructure.Contexts;
 using FluentValidation;
 using MediatR;
 
@@ -18,16 +19,11 @@ namespace DiscountСardApp.Application.Modules.StoreModule.Commands
         }
     }
 
-    public sealed class DeleteStoreCommandHandler : IRequestHandler<DeleteStoreCommand, StoreResult>
+    public sealed class DeleteStoreCommandHandler : BaseModuleHandler<DeleteStoreCommand, StoreResult>
     {
-        private readonly IMapper _mapper;
+        public DeleteStoreCommandHandler(ApplicationDbContext dbContext, IMapper mapper) : base(dbContext, mapper) { }
 
-        public DeleteStoreCommandHandler(IMapper mapper)
-        {
-            _mapper = mapper;
-        }
-
-        public async Task<StoreResult> Handle(DeleteStoreCommand request, CancellationToken cancellationToken)
+        public override async Task<StoreResult> Handle(DeleteStoreCommand request, CancellationToken cancellationToken)
         {
 
             throw new NotImplementedException();

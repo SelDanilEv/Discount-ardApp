@@ -15,7 +15,15 @@ namespace DiscountСardApp.Infrastructure.Contexts
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
+
+
             Database.EnsureCreated();   // создаем базу данных при первом обращении
+        }
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            builder.Entity<MCCCode>()
+                .HasIndex(c => c.Code)
+                .IsUnique();
         }
     }
 }

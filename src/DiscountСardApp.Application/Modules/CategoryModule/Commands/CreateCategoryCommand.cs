@@ -26,18 +26,11 @@ namespace DiscountСardApp.Application.Modules.CategoryModule.Commands
         }
     }
 
-    public sealed class CreateCategoryCommandHandler : IRequestHandler<CreateCategoryCommand, CategoryResult>
+    public sealed class CreateCategoryCommandHandler : BaseModuleHandler<CreateCategoryCommand, CategoryResult>
     {
-        private readonly IMapper _mapper;
-        private readonly ApplicationDbContext _dbContext;
+        public CreateCategoryCommandHandler(ApplicationDbContext dbContext, IMapper mapper) : base(dbContext, mapper) { }
 
-        public CreateCategoryCommandHandler(ApplicationDbContext dbContext, IMapper mapper)
-        {
-            _mapper = mapper;
-            _dbContext = dbContext;
-        }
-
-        public async Task<CategoryResult> Handle(CreateCategoryCommand request, CancellationToken cancellationToken)
+        public override async Task<CategoryResult> Handle(CreateCategoryCommand request, CancellationToken cancellationToken)
         {
             var newCategory = _mapper.Map<Category>(request);
 

@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using DiscountСardApp.Application.Models.V1.Category.Results;
+using DiscountСardApp.Infrastructure.Contexts;
 using FluentValidation;
 using MediatR;
 
@@ -18,18 +19,12 @@ namespace DiscountСardApp.Application.Modules.CategoryModule.Commands
         }
     }
 
-    public sealed class DeleteCategoryCommandHandler : IRequestHandler<DeleteCategoryCommand, CategoryResult>
+    public sealed class DeleteCategoryCommandHandler : BaseModuleHandler<DeleteCategoryCommand, CategoryResult>
     {
-        private readonly IMapper _mapper;
+        public DeleteCategoryCommandHandler(ApplicationDbContext dbContext, IMapper mapper) : base(dbContext, mapper) { }
 
-        public DeleteCategoryCommandHandler(IMapper mapper)
+        public override async Task<CategoryResult> Handle(DeleteCategoryCommand request, CancellationToken cancellationToken)
         {
-            _mapper = mapper;
-        }
-
-        public async Task<CategoryResult> Handle(DeleteCategoryCommand request, CancellationToken cancellationToken)
-        {
-
             throw new NotImplementedException();
             //return await _CategoryService.DeleteCategoryAsync(deleteCategoryModel);
         }

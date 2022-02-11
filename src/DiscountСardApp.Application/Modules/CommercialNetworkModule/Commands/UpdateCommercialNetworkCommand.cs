@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using DiscountСardApp.Application.Models.V1.CommercialNetwork.Results;
+using DiscountСardApp.Infrastructure.Contexts;
 using FluentValidation;
 using MediatR;
 
@@ -20,18 +21,12 @@ namespace DiscountСardApp.Application.Modules.CommercialNetworkModule.Commands
         }
     }
 
-    public sealed class UpdateCommercialNetworkCommandHandler : IRequestHandler<UpdateCommercialNetworkCommand, CommercialNetworkResult>
+    public sealed class UpdateCommercialNetworkCommandHandler : BaseModuleHandler<UpdateCommercialNetworkCommand, CommercialNetworkResult>
     {
-        private readonly IMapper _mapper;
+        public UpdateCommercialNetworkCommandHandler(ApplicationDbContext dbContext, IMapper mapper) : base(dbContext, mapper) { }
 
-        public UpdateCommercialNetworkCommandHandler(IMapper mapper)
+        public override async Task<CommercialNetworkResult> Handle(UpdateCommercialNetworkCommand request, CancellationToken cancellationToken)
         {
-            _mapper = mapper;
-        }
-
-        public async Task<CommercialNetworkResult> Handle(UpdateCommercialNetworkCommand request, CancellationToken cancellationToken)
-        {
-
             throw new NotImplementedException();
             //return await _CommercialNetworkService.UpdateCommercialNetworkAsync(updateCommercialNetworkModel);
         }

@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using DiscountСardApp.Application.Models.V1.MCCCode.Results;
+using DiscountСardApp.Infrastructure.Contexts;
 using FluentValidation;
 using MediatR;
 
@@ -18,16 +19,11 @@ namespace DiscountСardApp.Application.Modules.MCCCodeModule.Queries
         }
     }
 
-    public sealed class GetMCCCodeQueryHandler : IRequestHandler<GetMCCCodeQuery, MCCCodeResult>
+    public sealed class GetMCCCodeQueryHandler : BaseModuleHandler<GetMCCCodeQuery, MCCCodeResult>
     {
-        private readonly IMapper _mapper;
+        public GetMCCCodeQueryHandler(ApplicationDbContext dbContext, IMapper mapper) : base(dbContext, mapper) { }
 
-        public GetMCCCodeQueryHandler(IMapper mapper)
-        {
-            _mapper = mapper;
-        }
-
-        public async Task<MCCCodeResult> Handle(GetMCCCodeQuery request, CancellationToken cancellationToken)
+        public override async Task<MCCCodeResult> Handle(GetMCCCodeQuery request, CancellationToken cancellationToken)
         {
 
             throw new NotImplementedException();

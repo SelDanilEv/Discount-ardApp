@@ -246,6 +246,7 @@ const CardPanel = (props: any) => {
             autoComplete="conditions"
             label="Примечания (условия)"
             fullWidth
+            multiline
             value={card.conditions}
             inputProps={{ readOnly: true, }}
             InputLabelProps={{ shrink: true }}

@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using DiscountСardApp.Application.Models.V1.Bank.Results;
+using DiscountСardApp.Infrastructure.Contexts;
 using FluentValidation;
 using MediatR;
 
@@ -18,18 +19,12 @@ namespace DiscountСardApp.Application.Modules.BankModule.Commands
         }
     }
 
-    public sealed class DeleteBankCommandHandler : IRequestHandler<DeleteBankCommand, BankResult>
+    public sealed class DeleteBankCommandHandler : BaseModuleHandler<DeleteBankCommand, BankResult>
     {
-        private readonly IMapper _mapper;
+        public DeleteBankCommandHandler(ApplicationDbContext dbContext, IMapper mapper) : base(dbContext, mapper) { }
 
-        public DeleteBankCommandHandler(IMapper mapper)
+        public override async Task<BankResult> Handle(DeleteBankCommand request, CancellationToken cancellationToken)
         {
-            _mapper = mapper;
-        }
-
-        public async Task<BankResult> Handle(DeleteBankCommand request, CancellationToken cancellationToken)
-        {
-
             throw new NotImplementedException();
             //return await _bankService.DeleteBankAsync(deleteBankModel);
         }

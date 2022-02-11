@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using DiscountСardApp.Application.Models.V1.Category.Results;
 using DiscountСardApp.Domain.Entities;
+using DiscountСardApp.Infrastructure.Contexts;
 using FluentValidation;
 using MediatR;
 
@@ -30,18 +31,12 @@ namespace DiscountСardApp.Application.Modules.CategoryModule.Commands
         }
     }
 
-    public sealed class UpdateCategoryCommandHandler : IRequestHandler<UpdateCategoryCommand, CategoryResult>
+    public sealed class UpdateCategoryCommandHandler : BaseModuleHandler<UpdateCategoryCommand, CategoryResult>
     {
-        private readonly IMapper _mapper;
+        public UpdateCategoryCommandHandler(ApplicationDbContext dbContext, IMapper mapper) : base(dbContext, mapper) { }
 
-        public UpdateCategoryCommandHandler(IMapper mapper)
+        public override async Task<CategoryResult> Handle(UpdateCategoryCommand request, CancellationToken cancellationToken)
         {
-            _mapper = mapper;
-        }
-
-        public async Task<CategoryResult> Handle(UpdateCategoryCommand request, CancellationToken cancellationToken)
-        {
-
             throw new NotImplementedException();
             //return await _CategoryService.UpdateCategoryAsync(updateCategoryModel);
         }

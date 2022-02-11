@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using DiscountСardApp.Application.Models.V1.DiscountCard.Results;
+using DiscountСardApp.Infrastructure.Contexts;
 using FluentValidation;
 using MediatR;
 
@@ -18,18 +19,12 @@ namespace DiscountСardApp.Application.Modules.DiscountCardModule.Commands
         }
     }
 
-    public sealed class DeleteDiscountCardCommandHandler : IRequestHandler<DeleteDiscountCardCommand, DiscountCardResult>
+    public sealed class DeleteDiscountCardCommandHandler : BaseModuleHandler<DeleteDiscountCardCommand, DiscountCardResult>
     {
-        private readonly IMapper _mapper;
+        public DeleteDiscountCardCommandHandler(ApplicationDbContext dbContext, IMapper mapper) : base(dbContext, mapper) { }
 
-        public DeleteDiscountCardCommandHandler(IMapper mapper)
+        public override async Task<DiscountCardResult> Handle(DeleteDiscountCardCommand request, CancellationToken cancellationToken)
         {
-            _mapper = mapper;
-        }
-
-        public async Task<DiscountCardResult> Handle(DeleteDiscountCardCommand request, CancellationToken cancellationToken)
-        {
-
             throw new NotImplementedException();
             //return await _DiscountCardService.DeleteDiscountCardAsync(deleteDiscountCardModel);
         }

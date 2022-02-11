@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using DiscountСardApp.Application.Models.V1.Store.Results;
+using DiscountСardApp.Infrastructure.Contexts;
 using FluentValidation;
 using MediatR;
 
@@ -23,16 +24,11 @@ namespace DiscountСardApp.Application.Modules.StoreModule.Commands
         }
     }
 
-    public sealed class CreateStoreCommandHandler : IRequestHandler<CreateStoreCommand, StoreResult>
+    public sealed class CreateStoreCommandHandler : BaseModuleHandler<CreateStoreCommand, StoreResult>
     {
-        private readonly IMapper _mapper;
+        public CreateStoreCommandHandler(ApplicationDbContext dbContext, IMapper mapper) : base(dbContext, mapper) { }
 
-        public CreateStoreCommandHandler(IMapper mapper)
-        {
-            _mapper = mapper;
-        }
-
-        public async Task<StoreResult> Handle(CreateStoreCommand request, CancellationToken cancellationToken)
+        public override async Task<StoreResult> Handle(CreateStoreCommand request, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
             //return await _StoreService.CreateStoreAsync(createStoreModel);

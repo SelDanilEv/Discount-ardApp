@@ -9,7 +9,7 @@ namespace DiscountСardApp.Application.Modules.BankModule.Commands
 {
     public sealed class CreateBankCommand : IRequest<BankResult>
     {
-        public string? Name { get; set; }
+        public string Name { get; set; } = String.Empty;
     }
 
     public sealed class CreateBankCommandValidator : AbstractValidator<CreateBankCommand>
@@ -20,18 +20,11 @@ namespace DiscountСardApp.Application.Modules.BankModule.Commands
         }
     }
 
-    public sealed class CreateBankCommandHandler : IRequestHandler<CreateBankCommand, BankResult>
+    public sealed class CreateBankCommandHandler : BaseModuleHandler<CreateBankCommand, BankResult>
     {
-        private readonly IMapper _mapper;
-        private readonly ApplicationDbContext _dbContext;
+        public CreateBankCommandHandler(ApplicationDbContext dbContext, IMapper mapper) : base(dbContext, mapper) { }
 
-        public CreateBankCommandHandler(ApplicationDbContext dbContext, IMapper mapper)
-        {
-            _mapper = mapper;
-            _dbContext = dbContext;
-        }
-
-        public async Task<BankResult> Handle(CreateBankCommand request, CancellationToken cancellationToken)
+        public override async Task<BankResult> Handle(CreateBankCommand request, CancellationToken cancellationToken)
         {
             var newBank = _mapper.Map<Bank>(request);
 

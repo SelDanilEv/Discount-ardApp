@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
 using DiscountСardApp.Application.Models.V1.MCCCode.Results;
+using DiscountСardApp.Infrastructure.Contexts;
 using FluentValidation;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 
 namespace DiscountСardApp.Application.Modules.MCCCodeModule.Queries
 {
@@ -16,19 +18,17 @@ namespace DiscountСardApp.Application.Modules.MCCCodeModule.Queries
         }
     }
 
-    public sealed class GetAllMCCCodesQueryHandler : IRequestHandler<GetAllMCCCodesQuery, List<MCCCodeResult>>
+    public sealed class GetAllMCCCodesQueryHandler : BaseModuleHandler<GetAllMCCCodesQuery, List<MCCCodeResult>>
     {
-        private readonly IMapper _mapper;
+        public GetAllMCCCodesQueryHandler(ApplicationDbContext dbContext, IMapper mapper) : base(dbContext, mapper) { }
 
-        public GetAllMCCCodesQueryHandler(IMapper mapper)
+        public override async Task<List<MCCCodeResult>> Handle(GetAllMCCCodesQuery request, CancellationToken cancellationToken)
         {
-            _mapper = mapper;
-        }
+            var mCCCodeList = await _dbContext.MCCCodes.ToListAsync();
 
-        public async Task<List<MCCCodeResult>> Handle(GetAllMCCCodesQuery request, CancellationToken cancellationToken)
-        {
-            throw new NotImplementedException();
-            //return await _MCCCodeService.GetAll();
+            var mCCCodesResult = _mapper.Map<List<MCCCodeResult>>(mCCCodeList);
+
+            return mCCCodesResult;
         }
     }
 }

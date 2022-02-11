@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using DiscountСardApp.Application.Models.V1.DiscountCard.Results;
+using DiscountСardApp.Infrastructure.Contexts;
 using FluentValidation;
 using MediatR;
 
@@ -18,18 +19,12 @@ namespace DiscountСardApp.Application.Modules.DiscountCardModule.Queries
         }
     }
 
-    public sealed class GetDiscountCardQueryHandler : IRequestHandler<GetDiscountCardQuery, DiscountCardResult>
+    public sealed class GetDiscountCardQueryHandler : BaseModuleHandler<GetDiscountCardQuery, DiscountCardResult>
     {
-        private readonly IMapper _mapper;
+        public GetDiscountCardQueryHandler(ApplicationDbContext dbContext, IMapper mapper) : base(dbContext, mapper) { }
 
-        public GetDiscountCardQueryHandler(IMapper mapper)
+        public override async Task<DiscountCardResult> Handle(GetDiscountCardQuery request, CancellationToken cancellationToken)
         {
-            _mapper = mapper;
-        }
-
-        public async Task<DiscountCardResult> Handle(GetDiscountCardQuery request, CancellationToken cancellationToken)
-        {
-
             throw new NotImplementedException();
             //return await _DiscountCardService.GetAll(getDiscountCardModel);
         }

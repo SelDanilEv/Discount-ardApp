@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using DiscountСardApp.Application.Models.V1.DiscountCard.Results;
+using DiscountСardApp.Infrastructure.Contexts;
 using FluentValidation;
 using MediatR;
 
@@ -17,7 +18,7 @@ namespace DiscountСardApp.Application.Modules.DiscountCardModule.Commands
     {
         public UpdateDiscountCardCommandValidator()
         {
-            RuleFor(x => x.Id).NotEmpty().WithMessage("Please provide the DiscountCard id!");
+            RuleFor(x => x.Id).NotEmpty().WithMessage("Please provide the discount card id!");
 
             RuleFor(x => x.Name).NotNull().NotEmpty().WithMessage("Please provide the card name!");
 
@@ -26,18 +27,12 @@ namespace DiscountСardApp.Application.Modules.DiscountCardModule.Commands
         }
     }
 
-    public sealed class UpdateDiscountCardCommandHandler : IRequestHandler<UpdateDiscountCardCommand, DiscountCardResult>
+    public sealed class UpdateDiscountCardCommandHandler : BaseModuleHandler<UpdateDiscountCardCommand, DiscountCardResult>
     {
-        private readonly IMapper _mapper;
+        public UpdateDiscountCardCommandHandler(ApplicationDbContext dbContext, IMapper mapper) : base(dbContext, mapper) { }
 
-        public UpdateDiscountCardCommandHandler(IMapper mapper)
+        public override async Task<DiscountCardResult> Handle(UpdateDiscountCardCommand request, CancellationToken cancellationToken)
         {
-            _mapper = mapper;
-        }
-
-        public async Task<DiscountCardResult> Handle(UpdateDiscountCardCommand request, CancellationToken cancellationToken)
-        {
-
             throw new NotImplementedException();
             //return await _DiscountCardService.UpdateDiscountCardAsync(updateDiscountCardModel);
         }

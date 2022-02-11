@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
 using DiscountСardApp.Application.Models.V1.MCCCode.Results;
+using DiscountСardApp.Domain.Entities;
+using DiscountСardApp.Infrastructure.Contexts;
 using FluentValidation;
 using MediatR;
 
@@ -7,7 +9,7 @@ namespace DiscountСardApp.Application.Modules.MCCCodeModule.Commands
 {
     public sealed class CreateMCCCodeCommand : IRequest<MCCCodeResult>
     {
-        public int Code { get; set; }
+        public string Code { get; set; }
         public string Description { get; set; } = String.Empty;
     }
 
@@ -16,23 +18,24 @@ namespace DiscountСardApp.Application.Modules.MCCCodeModule.Commands
         public CreateMCCCodeCommandValidator()
         {
             RuleFor(x => x.Code).NotNull().NotEmpty().WithMessage("Please provide the code number!");
-            RuleFor(x => x.Code.ToString()).Length(4,4).WithMessage("Code number is not valid!");
+            RuleFor(x => x.Code.ToString()).Length(4, 4).WithMessage("Code number is not valid!");
         }
     }
 
-    public sealed class CreateMCCCodeCommandHandler : IRequestHandler<CreateMCCCodeCommand, MCCCodeResult>
+    public sealed class CreateMCCCodeCommandHandler : BaseModuleHandler<CreateMCCCodeCommand, MCCCodeResult>
     {
-        private readonly IMapper _mapper;
+        public CreateMCCCodeCommandHandler(ApplicationDbContext dbContext, IMapper mapper) : base(dbContext, mapper) { }
 
-        public CreateMCCCodeCommandHandler(IMapper mapper)
+        public override async Task<MCCCodeResult> Handle(CreateMCCCodeCommand request, CancellationToken cancellationToken)
         {
-            _mapper = mapper;
-        }
+            var newMCCCode = _mapper.Map<MCCCode>(request);
 
-        public async Task<MCCCodeResult> Handle(CreateMCCCodeCommand request, CancellationToken cancellationToken)
-        {
-            throw new NotImplementedException();
-            //return await _MCCCodeService.CreateMCCCodeAsync(createMCCCodeModel);
+            await _dbContext.MCCCodes.AddAsync(newMCCCode);
+            await _dbContext.SaveChangesAsync();
+
+            var mCCCodeResult = _mapper.Map<MCCCodeResult>(newMCCCode);
+
+            return mCCCodeResult;
         }
     }
 }

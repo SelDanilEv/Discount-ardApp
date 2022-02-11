@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using DiscountСardApp.Application.Models.V1.Category.Results;
+using DiscountСardApp.Infrastructure.Contexts;
 using FluentValidation;
 using MediatR;
 
@@ -16,16 +17,11 @@ namespace DiscountСardApp.Application.Modules.CategoryModule.Queries
         }
     }
 
-    public sealed class GetAllCategorysQueryHandler : IRequestHandler<GetAllCategorysQuery, List<CategoryResult>>
+    public sealed class GetAllCategorysQueryHandler : BaseModuleHandler<GetAllCategorysQuery, List<CategoryResult>>
     {
-        private readonly IMapper _mapper;
+        public GetAllCategorysQueryHandler(ApplicationDbContext dbContext, IMapper mapper) : base(dbContext, mapper) { }
 
-        public GetAllCategorysQueryHandler(IMapper mapper)
-        {
-            _mapper = mapper;
-        }
-
-        public async Task<List<CategoryResult>> Handle(GetAllCategorysQuery request, CancellationToken cancellationToken)
+        public override async Task<List<CategoryResult>> Handle(GetAllCategorysQuery request, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
             //return await _CategoryService.GetAll();

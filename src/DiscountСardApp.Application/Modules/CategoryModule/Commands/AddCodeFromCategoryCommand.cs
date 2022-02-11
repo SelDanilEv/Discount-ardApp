@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using DiscountСardApp.Application.Models.V1.DiscountCard.Results;
+using DiscountСardApp.Infrastructure.Contexts;
 using FluentValidation;
 using MediatR;
 
@@ -23,16 +24,11 @@ namespace DiscountСardApp.Application.Modules.CategoryModule.Commands
         }
     }
 
-    public sealed class AddCodeToCategoryHandler : IRequestHandler<AddCodeToCategoryCommand, DiscountCardResult>
+    public sealed class AddCodeToCategoryHandler : BaseModuleHandler<AddCodeToCategoryCommand, DiscountCardResult>
     {
-        private readonly IMapper _mapper;
+        public AddCodeToCategoryHandler(ApplicationDbContext dbContext, IMapper mapper) : base(dbContext, mapper) { }
 
-        public AddCodeToCategoryHandler(IMapper mapper)
-        {
-            _mapper = mapper;
-        }
-
-        public async Task<DiscountCardResult> Handle(AddCodeToCategoryCommand request, CancellationToken cancellationToken)
+        public override async Task<DiscountCardResult> Handle(AddCodeToCategoryCommand request, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
             //return await _DiscountCardService.AddCategoryAsync(AddCategoryModel);

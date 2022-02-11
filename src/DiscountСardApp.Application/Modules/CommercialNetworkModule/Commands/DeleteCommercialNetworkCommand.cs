@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using DiscountСardApp.Application.Models.V1.CommercialNetwork.Results;
+using DiscountСardApp.Infrastructure.Contexts;
 using FluentValidation;
 using MediatR;
 
@@ -18,18 +19,12 @@ namespace DiscountСardApp.Application.Modules.CommercialNetworkModule.Commands
         }
     }
 
-    public sealed class DeleteCommercialNetworkCommandHandler : IRequestHandler<DeleteCommercialNetworkCommand, CommercialNetworkResult>
+    public sealed class DeleteCommercialNetworkCommandHandler : BaseModuleHandler<DeleteCommercialNetworkCommand, CommercialNetworkResult>
     {
-        private readonly IMapper _mapper;
+        public DeleteCommercialNetworkCommandHandler(ApplicationDbContext dbContext, IMapper mapper) : base(dbContext, mapper) { }
 
-        public DeleteCommercialNetworkCommandHandler(IMapper mapper)
+        public override async Task<CommercialNetworkResult> Handle(DeleteCommercialNetworkCommand request, CancellationToken cancellationToken)
         {
-            _mapper = mapper;
-        }
-
-        public async Task<CommercialNetworkResult> Handle(DeleteCommercialNetworkCommand request, CancellationToken cancellationToken)
-        {
-
             throw new NotImplementedException();
             //return await _CommercialNetworkService.DeleteCommercialNetworkAsync(deleteCommercialNetworkModel);
         }

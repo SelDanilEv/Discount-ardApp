@@ -2,7 +2,7 @@
 {
     public class MCCCodeResult : BaseMCCCodeModel
     {
-        public int Code { get; set; }
+        public string Code { get; set; }
         public string? Description { get; set; } = String.Empty;
 
         public List<Domain.EntityModels.Category> Caterogies { get; set; } = new List<Domain.EntityModels.Category>();

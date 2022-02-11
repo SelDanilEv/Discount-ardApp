@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using DiscountСardApp.Application.Models.V1.CommercialNetwork.Results;
 using DiscountСardApp.Domain.Entities;
+using DiscountСardApp.Infrastructure.Contexts;
 using FluentValidation;
 using MediatR;
 
@@ -19,16 +20,11 @@ namespace DiscountСardApp.Application.Modules.CommercialNetworkModule.Commands
         }
     }
 
-    public sealed class CreateCommercialNetworkCommandHandler : IRequestHandler<CreateCommercialNetworkCommand, CommercialNetworkResult>
+    public sealed class CreateCommercialNetworkCommandHandler : BaseModuleHandler<CreateCommercialNetworkCommand, CommercialNetworkResult>
     {
-        private readonly IMapper _mapper;
+        public CreateCommercialNetworkCommandHandler(ApplicationDbContext dbContext, IMapper mapper) : base(dbContext, mapper) { }
 
-        public CreateCommercialNetworkCommandHandler(IMapper mapper)
-        {
-            _mapper = mapper;
-        }
-
-        public async Task<CommercialNetworkResult> Handle(CreateCommercialNetworkCommand request, CancellationToken cancellationToken)
+        public override async Task<CommercialNetworkResult> Handle(CreateCommercialNetworkCommand request, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
             //return await _CommercialNetworkService.CreateCommercialNetworkAsync(createCommercialNetworkModel);

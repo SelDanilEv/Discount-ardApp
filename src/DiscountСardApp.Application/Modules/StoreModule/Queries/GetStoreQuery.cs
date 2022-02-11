@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using DiscountСardApp.Application.Models.V1.Store.Results;
+using DiscountСardApp.Infrastructure.Contexts;
 using FluentValidation;
 using MediatR;
 
@@ -18,16 +19,11 @@ namespace DiscountСardApp.Application.Modules.StoreModule.Queries
         }
     }
 
-    public sealed class GetStoreQueryHandler : IRequestHandler<GetStoreQuery, StoreResult>
+    public sealed class GetStoreQueryHandler : BaseModuleHandler<GetStoreQuery, StoreResult>
     {
-        private readonly IMapper _mapper;
+        public GetStoreQueryHandler(ApplicationDbContext dbContext, IMapper mapper) : base(dbContext, mapper) { }
 
-        public GetStoreQueryHandler(IMapper mapper)
-        {
-            _mapper = mapper;
-        }
-
-        public async Task<StoreResult> Handle(GetStoreQuery request, CancellationToken cancellationToken)
+        public override async Task<StoreResult> Handle(GetStoreQuery request, CancellationToken cancellationToken)
         {
 
             throw new NotImplementedException();

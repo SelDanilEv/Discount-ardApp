@@ -18,18 +18,11 @@ namespace DiscountСardApp.Application.Modules.BankModule.Queries
         }
     }
 
-    public sealed class GetAllBanksQueryHandler : IRequestHandler<GetAllBanksQuery, List<BankResult>>
+    public sealed class GetAllBanksQueryHandler : BaseModuleHandler<GetAllBanksQuery, List<BankResult>>
     {
-        private readonly IMapper _mapper;
-        private readonly ApplicationDbContext _dbContext;
+        public GetAllBanksQueryHandler(ApplicationDbContext dbContext, IMapper mapper) : base(dbContext, mapper) { }
 
-        public GetAllBanksQueryHandler(ApplicationDbContext dbContext, IMapper mapper)
-        {
-            _mapper = mapper;
-            _dbContext = dbContext;
-        }
-
-        public async Task<List<BankResult>> Handle(GetAllBanksQuery request, CancellationToken cancellationToken)
+        public override async Task<List<BankResult>> Handle(GetAllBanksQuery request, CancellationToken cancellationToken)
         {
             var bankList = await _dbContext.Banks
                 .Include(b => b.DiscountCards)

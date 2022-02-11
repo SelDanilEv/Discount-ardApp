@@ -5,15 +5,20 @@ using DiscountСardApp.Application.DTOs.V1.CategoryDto.Requests;
 using DiscountСardApp.Application.DTOs.V1.CategoryDto.Results;
 using DiscountСardApp.Application.DTOs.V1.DiscountCardDto.Requests;
 using DiscountСardApp.Application.DTOs.V1.DiscountCardDto.Results;
+using DiscountСardApp.Application.DTOs.V1.MCCCodeDto.Requests;
+using DiscountСardApp.Application.DTOs.V1.MCCCodeDto.Results;
 using DiscountСardApp.Application.Models.V1.Bank.Results;
 using DiscountСardApp.Application.Models.V1.Category.Results;
 using DiscountСardApp.Application.Models.V1.DiscountCard.Results;
+using DiscountСardApp.Application.Models.V1.MCCCode.Results;
 using DiscountСardApp.Application.Modules.BankModule.Commands;
 using DiscountСardApp.Application.Modules.BankModule.Queries;
 using DiscountСardApp.Application.Modules.CategoryModule.Commands;
 using DiscountСardApp.Application.Modules.CategoryModule.Queries;
 using DiscountСardApp.Application.Modules.DiscountCardModule.Commands;
 using DiscountСardApp.Application.Modules.DiscountCardModule.Queries;
+using DiscountСardApp.Application.Modules.MCCCodeModule.Commands;
+using DiscountСardApp.Application.Modules.MCCCodeModule.Queries;
 using DiscountСardApp.Domain.EntityModels;
 
 namespace DiscountСardApp.Application.Mapping
@@ -59,6 +64,15 @@ namespace DiscountСardApp.Application.Mapping
             CreateMap<DeleteCategoryDto, DeleteCategoryCommand>();
 
             #endregion
+
+            #region MCCCode
+
+            CreateMap<GetMCCCodeDto, GetMCCCodeQuery>();
+            CreateMap<CreateMCCCodeDto, CreateMCCCodeCommand>();
+            CreateMap<UpdateMCCCodeDto, UpdateMCCCodeCommand>();
+            CreateMap<DeleteMCCCodeDto, DeleteMCCCodeCommand>();
+
+            #endregion
         }
 
         private void ConfigureModelMappings()
@@ -78,6 +92,12 @@ namespace DiscountСardApp.Application.Mapping
             #region Category
 
             CreateMap<CategoryResult, CategoryResultDto>();
+
+            #endregion
+
+            #region MCCCode
+
+            CreateMap<MCCCodeResult, MCCCodeResultDto>();
 
             #endregion
         }
@@ -108,6 +128,15 @@ namespace DiscountСardApp.Application.Mapping
             CreateMap<Domain.Entities.Category, CategoryResult>();
 
             CreateMap<Domain.Entities.Category, Category>();
+
+            #endregion
+
+            #region MCCCode
+
+            CreateMap<CreateMCCCodeCommand, Domain.Entities.MCCCode>();
+            CreateMap<Domain.Entities.MCCCode, MCCCodeResult>();
+
+            CreateMap<Domain.Entities.MCCCode, MCCCode>();
 
             #endregion
         }

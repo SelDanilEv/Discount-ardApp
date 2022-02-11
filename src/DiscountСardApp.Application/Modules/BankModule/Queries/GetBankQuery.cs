@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using DiscountСardApp.Application.Models.V1.Bank.Results;
+using DiscountСardApp.Infrastructure.Contexts;
 using FluentValidation;
 using MediatR;
 
@@ -18,18 +19,12 @@ namespace DiscountСardApp.Application.Modules.BankModule.Queries
         }
     }
 
-    public sealed class GetBankQueryHandler : IRequestHandler<GetBankQuery, BankResult>
+    public sealed class GetBankQueryHandler : BaseModuleHandler<GetBankQuery, BankResult>
     {
-        private readonly IMapper _mapper;
+        public GetBankQueryHandler(ApplicationDbContext dbContext, IMapper mapper) : base(dbContext,mapper){}
 
-        public GetBankQueryHandler(IMapper mapper)
+        public override async Task<BankResult> Handle(GetBankQuery request, CancellationToken cancellationToken)
         {
-            _mapper = mapper;
-        }
-
-        public async Task<BankResult> Handle(GetBankQuery request, CancellationToken cancellationToken)
-        {
-
             throw new NotImplementedException();
             //return await _bankService.GetAll(getBankModel);
         }

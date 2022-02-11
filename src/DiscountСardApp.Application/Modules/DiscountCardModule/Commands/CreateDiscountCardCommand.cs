@@ -9,8 +9,8 @@ namespace DiscountСardApp.Application.Modules.DiscountCardModule.Commands
 {
     public sealed class CreateDiscountCardCommand : IRequest<DiscountCardResult>
     {
-        public string? Name { get; set; }
-        public string? Conditions { get; set; }
+        public string Name { get; set; } = String.Empty;
+        public string Conditions { get; set; } = String.Empty;
         public Guid BankId { get; set; }
     }
 
@@ -20,23 +20,15 @@ namespace DiscountСardApp.Application.Modules.DiscountCardModule.Commands
         {
             RuleFor(x => x.Name).NotNull().NotEmpty().WithMessage("Please provide the card name!");
 
-            RuleFor(x => x.BankId).NotNull().NotEmpty()
-                .WithMessage("Please provide the bank id!");
+            RuleFor(x => x.BankId).NotNull().NotEmpty().WithMessage("Please provide the bank id!");
         }
     }
 
-    public sealed class CreateDiscountCardCommandHandler : IRequestHandler<CreateDiscountCardCommand, DiscountCardResult>
+    public sealed class CreateDiscountCardCommandHandler : BaseModuleHandler<CreateDiscountCardCommand, DiscountCardResult>
     {
-        private readonly IMapper _mapper;
-        private readonly ApplicationDbContext _dbContext;
+        public CreateDiscountCardCommandHandler(ApplicationDbContext dbContext, IMapper mapper) : base(dbContext, mapper) { }
 
-        public CreateDiscountCardCommandHandler(ApplicationDbContext dbContext, IMapper mapper)
-        {
-            _mapper = mapper;
-            _dbContext = dbContext;
-        }
-
-        public async Task<DiscountCardResult> Handle(CreateDiscountCardCommand request, CancellationToken cancellationToken)
+        public override async Task<DiscountCardResult> Handle(CreateDiscountCardCommand request, CancellationToken cancellationToken)
         {
             var newDiscountCard = _mapper.Map<DiscountCard>(request);
 
