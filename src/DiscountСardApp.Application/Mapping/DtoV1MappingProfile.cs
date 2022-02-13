@@ -3,22 +3,34 @@ using DiscountСardApp.Application.DTOs.V1.BankDto.Requests;
 using DiscountСardApp.Application.DTOs.V1.BankDto.Results;
 using DiscountСardApp.Application.DTOs.V1.CategoryDto.Requests;
 using DiscountСardApp.Application.DTOs.V1.CategoryDto.Results;
+using DiscountСardApp.Application.DTOs.V1.CommercialNetworkDto.Requests;
+using DiscountСardApp.Application.DTOs.V1.CommercialNetworkDto.Results;
 using DiscountСardApp.Application.DTOs.V1.DiscountCardDto.Requests;
 using DiscountСardApp.Application.DTOs.V1.DiscountCardDto.Results;
+using DiscountСardApp.Application.DTOs.V1.EmptyResult;
 using DiscountСardApp.Application.DTOs.V1.MCCCodeDto.Requests;
 using DiscountСardApp.Application.DTOs.V1.MCCCodeDto.Results;
+using DiscountСardApp.Application.DTOs.V1.StoreDto.Requests;
+using DiscountСardApp.Application.DTOs.V1.StoreDto.Results;
 using DiscountСardApp.Application.Models.V1.Bank.Results;
 using DiscountСardApp.Application.Models.V1.Category.Results;
+using DiscountСardApp.Application.Models.V1.CommercialNetwork.Results;
 using DiscountСardApp.Application.Models.V1.DiscountCard.Results;
+using DiscountСardApp.Application.Models.V1.EmptyResult;
 using DiscountСardApp.Application.Models.V1.MCCCode.Results;
+using DiscountСardApp.Application.Models.V1.Store.Results;
 using DiscountСardApp.Application.Modules.BankModule.Commands;
 using DiscountСardApp.Application.Modules.BankModule.Queries;
 using DiscountСardApp.Application.Modules.CategoryModule.Commands;
 using DiscountСardApp.Application.Modules.CategoryModule.Queries;
+using DiscountСardApp.Application.Modules.CommercialNetworkModule.Commands;
+using DiscountСardApp.Application.Modules.CommercialNetworkModule.Queries;
 using DiscountСardApp.Application.Modules.DiscountCardModule.Commands;
 using DiscountСardApp.Application.Modules.DiscountCardModule.Queries;
 using DiscountСardApp.Application.Modules.MCCCodeModule.Commands;
 using DiscountСardApp.Application.Modules.MCCCodeModule.Queries;
+using DiscountСardApp.Application.Modules.StoreModule.Commands;
+using DiscountСardApp.Application.Modules.StoreModule.Queries;
 using DiscountСardApp.Domain.EntityModels;
 
 namespace DiscountСardApp.Application.Mapping
@@ -39,7 +51,7 @@ namespace DiscountСardApp.Application.Mapping
         private void ConfigureRequestsMappings()
         {
             #region Bank
-            
+
             CreateMap<GetBankDto, GetBankQuery>();
             CreateMap<CreateBankDto, CreateBankCommand>();
             CreateMap<UpdateBankDto, UpdateBankCommand>();
@@ -63,6 +75,8 @@ namespace DiscountСardApp.Application.Mapping
             CreateMap<UpdateCategoryDto, UpdateCategoryCommand>();
             CreateMap<DeleteCategoryDto, DeleteCategoryCommand>();
 
+            CreateMap<ReplaceCategoryCodesDto, ReplaceCategoryCodesCommand>();
+
             #endregion
 
             #region MCCCode
@@ -71,6 +85,30 @@ namespace DiscountСardApp.Application.Mapping
             CreateMap<CreateMCCCodeDto, CreateMCCCodeCommand>();
             CreateMap<UpdateMCCCodeDto, UpdateMCCCodeCommand>();
             CreateMap<DeleteMCCCodeDto, DeleteMCCCodeCommand>();
+
+            #endregion
+
+            #region CommercialNetwork
+
+            CreateMap<GetCommercialNetworkDto, GetCommercialNetworkQuery>();
+            CreateMap<CreateCommercialNetworkDto, CreateCommercialNetworkCommand>();
+            CreateMap<UpdateCommercialNetworkDto, UpdateCommercialNetworkCommand>();
+            CreateMap<DeleteCommercialNetworkDto, DeleteCommercialNetworkCommand>();
+
+            #endregion
+
+            #region Store
+
+            CreateMap<GetStoreDto, GetStoreQuery>();
+            CreateMap<CreateStoreDto, CreateStoreCommand>();
+            CreateMap<UpdateStoreDto, UpdateStoreCommand>();
+            CreateMap<DeleteStoreDto, DeleteStoreCommand>();
+
+            #endregion
+
+            #region EmptyResult
+
+            CreateMap<EmptyResult, EmptyResultDto>();
 
             #endregion
         }
@@ -92,12 +130,25 @@ namespace DiscountСardApp.Application.Mapping
             #region Category
 
             CreateMap<CategoryResult, CategoryResultDto>();
+            CreateMap<ReplaceCodesResult, ReplaceCategoryCodesResultDto>();
 
             #endregion
 
             #region MCCCode
 
             CreateMap<MCCCodeResult, MCCCodeResultDto>();
+
+            #endregion
+
+            #region CommercialNetwork
+
+            CreateMap<CommercialNetworkResult, CommercialNetworkResultDto>();
+
+            #endregion
+
+            #region Store
+
+            CreateMap<StoreResult, StoreResultDto>();
 
             #endregion
         }
@@ -139,11 +190,30 @@ namespace DiscountСardApp.Application.Mapping
             CreateMap<Domain.Entities.MCCCode, MCCCode>();
 
             #endregion
+
+            #region CommercialNetwork
+
+            CreateMap<CreateCommercialNetworkCommand, Domain.Entities.CommercialNetwork>();
+            CreateMap<Domain.Entities.CommercialNetwork, CommercialNetworkResult>();
+
+            CreateMap<Domain.Entities.CommercialNetwork, CommercialNetwork>();
+
+            #endregion
+
+            #region Store
+
+            CreateMap<CreateStoreCommand, Domain.Entities.Store>()
+                .ForMember(x => x.MCCCode, opt => opt.Ignore());
+            CreateMap<Domain.Entities.Store, StoreResult>();
+
+            CreateMap<Domain.Entities.Store, Store>();
+
+            #endregion
         }
 
         private void ConfigureSharedMappings()
         {
-            //TODO: shared mapping here
+
         }
     }
 }

@@ -8,8 +8,8 @@ namespace DiscountСardApp.Application.DTOs.V1.StoreDto.Results
         public Guid MCCCodeId { get; set; }
         public MCCCode MCCCode { get; set; } = new MCCCode();
 
-        public Guid CommertialNetworkId { get; set; }
-        public CommertialNetwork CommertialNetwork { get; set; } = new CommertialNetwork();
+        public Guid CommercialNetworkId { get; set; }
+        public CommercialNetwork CommercialNetwork { get; set; } = new CommercialNetwork();
 
         public string Address { get; set; } = String.Empty;
     }

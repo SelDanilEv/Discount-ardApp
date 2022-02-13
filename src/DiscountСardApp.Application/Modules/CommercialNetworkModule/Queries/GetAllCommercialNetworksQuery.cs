@@ -3,6 +3,7 @@ using DiscountСardApp.Application.Models.V1.CommercialNetwork.Results;
 using DiscountСardApp.Infrastructure.Contexts;
 using FluentValidation;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 
 namespace DiscountСardApp.Application.Modules.CommercialNetworkModule.Queries
 {
@@ -23,8 +24,14 @@ namespace DiscountСardApp.Application.Modules.CommercialNetworkModule.Queries
 
         public override async Task<List<CommercialNetworkResult>> Handle(GetAllCommercialNetworksQuery request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
-            //return await _CommercialNetworkService.GetAll();
+            var comercialNetworksList = await _dbContext.CommercialNetworks
+                        .Include(c => c.Stores)
+                        .ThenInclude(c => c.MCCCode)
+                        .ToListAsync();
+
+            var commercialNetworkResult = _mapper.Map<List<CommercialNetworkResult>>(comercialNetworksList);
+
+            return commercialNetworkResult;
         }
     }
 }

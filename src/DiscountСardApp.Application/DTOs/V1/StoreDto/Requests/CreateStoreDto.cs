@@ -2,8 +2,8 @@
 {
     public class CreateStoreDto
     {
-        public Guid MCCCodeId { get; set; }
-        public Guid CommertialNetworkId { get; set; }
+        public Guid CommercialNetworkId { get; set; }
+        public string MCCCode { get; set; } = String.Empty;
         public string Address { get; set; } = String.Empty;
     }
 }

@@ -6,7 +6,9 @@
 
         public Guid MCCCodeId { get; set; }
 
-        public Guid CommertialNetworkId { get; set; }
+        public MCCCode? MCCCode { get; set; } = null;
+
+        public Guid CommercialNetworkId { get; set; }
 
         public string Address { get; set; } = String.Empty;
     }

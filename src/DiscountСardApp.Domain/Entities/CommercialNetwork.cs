@@ -1,6 +1,6 @@
-﻿namespace DiscountСardApp.Domain.EntityModels
+﻿namespace DiscountСardApp.Domain.Entities
 {
-    public class CommertialNetwork
+    public class CommercialNetwork
     {
         public Guid Id { get; set; }
         public string Name { get; set; } = String.Empty;

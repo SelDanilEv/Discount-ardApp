@@ -17,6 +17,8 @@ const CardPanel = (props: any) => {
   const [category, setCategory] = useState<any>({});
   const [categories, setCategories] = useState<any[]>([]);
 
+  const [codes, setCodes] = useState<string>("");
+
   useEffect(() => {
     wrapAPICall(loadBanksData, setLoadingState);
   }, [])
@@ -38,9 +40,13 @@ const CardPanel = (props: any) => {
   }
 
   const UpdateData = (bankPredicate: any) => {
+    setBank({});
+    setCard({});
+    setCategory({});
+    setCategories([]);
+    setCodes("");
 
     let selectedBank = banks.find(bankPredicate)
-    let selectedCard = cards.find(x => x.id = card.id)
 
     console.log("selectedBank");
     console.log(selectedBank);
@@ -48,12 +54,8 @@ const CardPanel = (props: any) => {
     if (selectedBank) {
       setBank(selectedBank);
       setCards(selectedBank.discountCards)
-
-      if (selectedCard) {
-        setCategories(selectedCard.caterogies)
-      }
-    }
-  };
+    };
+  }
 
   //--- Bank region ---
   const handleCreateBank = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -155,9 +157,13 @@ const CardPanel = (props: any) => {
 
       const result = await response.json();
 
+      console.log("category result")
+      console.log(result)
+
       switch (response.status) {
         case 200:
           setCategories([...categories, result])
+          console.log(categories)
           break;
         case 400:
         default:
@@ -168,9 +174,56 @@ const CardPanel = (props: any) => {
   const handleSelectCategory = (event: SelectChangeEvent) => {
     let selectedCategory = categories.find(x => x.id == event.target.value)
 
+    console.log("selectedCategory");
+    console.log(selectedCategory);
+
     setCategory(selectedCategory);
-    // setCodes(selectedCard.mcccodes);
+    setCodes(FormatCodes(selectedCategory.mccCodes));
   };
+  //------------
+
+
+  //--- Codes region ---
+  const handleReplaceCodes = async (event: React.FormEvent<HTMLFormElement>) => {
+    wrapAPICall(async () => {
+      event.preventDefault();
+      const data = new FormData(event.currentTarget);
+
+      const requestData = {
+        Codes: data.get("codes")?.toString(),
+        CategoryId: category.id,
+      };
+
+      const response = await fetch("api/v1/Category/ReplaceCodes", {
+        method: "POST",
+        body: JSON.stringify(requestData),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      const result = await response.json();
+
+      switch (response.status) {
+        case 200:
+          setCodes(result.codes)
+          break;
+        case 400:
+        default:
+      }
+    }, setLoadingState);
+  };
+
+  //------------
+
+  //--- Helpers region ---
+
+  const FormatCodes = (codeItems: any[]) => {
+    if (!codeItems) return "";
+
+    return codeItems.map((c: any) => c.code).join(", ");
+  }
+
   //------------
 
   return (
@@ -247,7 +300,7 @@ const CardPanel = (props: any) => {
             label="Примечания (условия)"
             fullWidth
             multiline
-            value={card.conditions}
+            value={card?.conditions || ""}
             inputProps={{ readOnly: true, }}
             InputLabelProps={{ shrink: true }}
             margin="normal"
@@ -326,6 +379,46 @@ const CardPanel = (props: any) => {
                 fullWidth
                 disabled={loadingState.Loading}>
                 Создать
+              </Button>
+            </Box>
+          </Box>
+        </Box>
+
+        <Box className="categoryCodesPanel" gridColumn="span 3">
+          <InputLabel>MCC коды</InputLabel>
+          <TextField
+            name="codes"
+            label="Коды"
+            fullWidth
+            multiline
+            value={codes}
+            inputProps={{ readOnly: true, }}
+            InputLabelProps={{ shrink: true }}
+            margin="normal"
+          />
+          <Box
+            className="createPanel"
+            sx={{ mt: 1 }}>
+            <Divider />
+            <InputLabel>Заменить коды</InputLabel>
+            <Box
+              component="form"
+              onSubmit={handleReplaceCodes}
+              sx={{ mt: 1 }}>
+              <TextField
+                name="codes"
+                label="Новые коды"
+                margin="normal"
+                multiline
+                fullWidth
+                required
+              />
+              <Button
+                type="submit"
+                variant="contained"
+                fullWidth
+                disabled={loadingState.Loading}>
+                Заменить
               </Button>
             </Box>
           </Box>

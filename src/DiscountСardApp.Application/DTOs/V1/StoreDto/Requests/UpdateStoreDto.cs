@@ -4,7 +4,7 @@
     {
         public Guid Id { get; set; }
         public Guid MCCCodeId { get; set; }
-        public Guid CommertialNetworkId { get; set; }
+        public Guid CommercialNetworkId { get; set; }
         public string Address { get; set; } = String.Empty;
     }
 }

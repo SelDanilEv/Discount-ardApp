@@ -19,7 +19,7 @@ namespace DiscountСardApp.Controllers.V1
         public CategoryController(IMediator mediator, IMapper mapper) : base(mediator, mapper)
         { }
 
-        [HttpGet("GetAllCategorys")]
+        [HttpGet("GetAllCategories")]
         [ProducesResponseType(typeof(List<CategoryResultDto>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
@@ -87,6 +87,21 @@ namespace DiscountСardApp.Controllers.V1
             };
 
             return await ProcessApiCallAsync<DeleteCategoryCommand, CategoryResultDto>(command);
+        }
+
+        [HttpPost("ReplaceCodes")]
+        [ProducesResponseType(typeof(ReplaceCategoryCodesResultDto), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
+        public async Task<ActionResult<ReplaceCategoryCodesResultDto>> ReplaceCategoryCodes(ReplaceCategoryCodesDto replaceCategoryCodes)
+        {
+            var command = new ReplaceCategoryCodesCommand
+            {
+                Codes = replaceCategoryCodes.Codes,
+                CategoryId = replaceCategoryCodes.CategoryId
+            };
+
+            return await ProcessApiCallAsync<ReplaceCategoryCodesCommand, ReplaceCategoryCodesResultDto>(command);
         }
     }
 }

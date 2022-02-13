@@ -5,8 +5,8 @@
         public Guid MCCCodeId { get; set; }
         public Domain.EntityModels.MCCCode MCCCode { get; set; } = new Domain.EntityModels.MCCCode();
 
-        public Guid CommertialNetworkId { get; set; }
-        public Domain.EntityModels.CommertialNetwork CommertialNetwork { get; set; } = new Domain.EntityModels.CommertialNetwork();
+        public Guid CommercialNetworkId { get; set; }
+        public Domain.EntityModels.CommercialNetwork CommercialNetwork { get; set; } = new Domain.EntityModels.CommercialNetwork();
 
         public string Address { get; set; } = String.Empty;
     }

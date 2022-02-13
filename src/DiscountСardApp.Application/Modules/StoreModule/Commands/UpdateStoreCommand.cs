@@ -12,7 +12,7 @@ namespace DiscountСardApp.Application.Modules.StoreModule.Commands
 
         public Guid MCCCodeId { get; set; }
 
-        public Guid CommertialNetworkId { get; set; }
+        public Guid CommercialNetworkId { get; set; }
 
         public string Address { get; set; } = String.Empty;
     }
@@ -24,7 +24,7 @@ namespace DiscountСardApp.Application.Modules.StoreModule.Commands
             RuleFor(x => x.Id).NotEmpty().WithMessage("Please provide the store id!");
 
             RuleFor(x => x.MCCCodeId).NotNull().NotEmpty().WithMessage("Please provide the code!");
-            RuleFor(x => x.CommertialNetworkId).NotNull().NotEmpty().WithMessage("Please provide the commertial network!");
+            RuleFor(x => x.CommercialNetworkId).NotNull().NotEmpty().WithMessage("Please provide the commercial network!");
         }
     }
 

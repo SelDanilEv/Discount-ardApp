@@ -26,8 +26,14 @@ namespace DiscountСardApp.Application.Modules.CommercialNetworkModule.Commands
 
         public override async Task<CommercialNetworkResult> Handle(CreateCommercialNetworkCommand request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
-            //return await _CommercialNetworkService.CreateCommercialNetworkAsync(createCommercialNetworkModel);
+            var newCommercialNetwork = _mapper.Map<CommercialNetwork>(request);
+
+            await _dbContext.CommercialNetworks.AddAsync(newCommercialNetwork);
+            await _dbContext.SaveChangesAsync();
+
+            var commercialNetworkResult = _mapper.Map<CommercialNetworkResult>(newCommercialNetwork);
+
+            return commercialNetworkResult;
         }
     }
 }

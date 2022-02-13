@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using DiscountСardApp.Application.Models.V1.Store.Results;
+using DiscountСardApp.Domain.Entities;
 using DiscountСardApp.Infrastructure.Contexts;
 using FluentValidation;
 using MediatR;
@@ -8,9 +9,9 @@ namespace DiscountСardApp.Application.Modules.StoreModule.Commands
 {
     public sealed class CreateStoreCommand : IRequest<StoreResult>
     {
-        public Guid MCCCodeId { get; set; }
+        public Guid CommercialNetworkId { get; set; }
 
-        public Guid CommertialNetworkId { get; set; }
+        public string MCCCode { get; set; } = String.Empty;
 
         public string Address { get; set; } = String.Empty;
     }
@@ -19,8 +20,8 @@ namespace DiscountСardApp.Application.Modules.StoreModule.Commands
     {
         public CreateStoreCommandValidator()
         {
-            RuleFor(x => x.MCCCodeId).NotNull().NotEmpty().WithMessage("Please provide the code!");
-            RuleFor(x => x.CommertialNetworkId).NotNull().NotEmpty().WithMessage("Please provide the commertial network!");
+            RuleFor(x => x.MCCCode).NotNull().NotEmpty().WithMessage("Please provide the code!");
+            RuleFor(x => x.CommercialNetworkId).NotNull().NotEmpty().WithMessage("Please provide the commercial network!");
         }
     }
 
@@ -30,8 +31,16 @@ namespace DiscountСardApp.Application.Modules.StoreModule.Commands
 
         public override async Task<StoreResult> Handle(CreateStoreCommand request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
-            //return await _StoreService.CreateStoreAsync(createStoreModel);
+            var newStore = _mapper.Map<Store>(request);
+
+            newStore.MCCCode = _dbContext.MCCCodes.Single(c => c.Code == request.MCCCode);
+
+            await _dbContext.Stores.AddAsync(newStore);
+            await _dbContext.SaveChangesAsync();
+
+            var storeResult = _mapper.Map<StoreResult>(newStore);
+
+            return storeResult;
         }
     }
 }

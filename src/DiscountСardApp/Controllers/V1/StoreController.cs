@@ -52,8 +52,8 @@ namespace DiscountСardApp.Controllers.V1
         {
             var command = new CreateStoreCommand
             {
-                CommertialNetworkId = createStoreDto.CommertialNetworkId,
-                MCCCodeId = createStoreDto.MCCCodeId,
+                CommercialNetworkId = createStoreDto.CommercialNetworkId,
+                MCCCode = createStoreDto.MCCCode,
                 Address = createStoreDto.Address,
             };
 
@@ -69,7 +69,7 @@ namespace DiscountСardApp.Controllers.V1
             var command = new UpdateStoreCommand
             {
                 Id = updateStoreDto.Id,
-                CommertialNetworkId = updateStoreDto.CommertialNetworkId,
+                CommercialNetworkId = updateStoreDto.CommercialNetworkId,
                 MCCCodeId = updateStoreDto.MCCCodeId,
                 Address = updateStoreDto.Address,
             };
