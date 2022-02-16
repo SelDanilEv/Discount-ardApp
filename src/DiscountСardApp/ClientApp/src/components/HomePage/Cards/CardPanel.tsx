@@ -19,6 +19,8 @@ const CardPanel = (props: any) => {
 
   const [codes, setCodes] = useState<string>("");
 
+  const [dashboardData, setDashboardData] = useState<any>({});
+
   useEffect(() => {
     wrapAPICall(loadBanksData, setLoadingState);
   }, [])
@@ -43,6 +45,7 @@ const CardPanel = (props: any) => {
     setBank({});
     setCard({});
     setCategory({});
+    setDashboardData({});
     setCategories([]);
     setCodes("");
 
@@ -179,11 +182,13 @@ const CardPanel = (props: any) => {
 
     setCategory(selectedCategory);
     setCodes(FormatCodes(selectedCategory.mccCodes));
+    renderDashboard(selectedCategory.id);
   };
   //------------
 
 
   //--- Codes region ---
+
   const handleReplaceCodes = async (event: React.FormEvent<HTMLFormElement>) => {
     wrapAPICall(async () => {
       event.preventDefault();
@@ -213,6 +218,59 @@ const CardPanel = (props: any) => {
       }
     }, setLoadingState);
   };
+
+  //------------
+
+  //--- Dashboard region
+
+  const renderDashboard = (categoryId: string) => {
+    if (category) {
+      wrapAPICall(async () => {
+
+        const response = await fetch("api/v1/Dashboard/GetDashboardByCategoryId?CategoryId=" + categoryId, {
+          method: "GET"
+        });
+
+        const result = await response.json();
+
+        console.log("Data for dashboard rendering")
+        console.log(result)
+
+        switch (response.status) {
+          case 200:
+            setDashboardData(result)
+            break;
+          case 400:
+          default:
+        }
+      }, setLoadingState);
+    }
+  }
+
+  const textForDashboard = () => {
+    console.log("start render dashboard")
+
+    let result = commercialNetworkSeporator;
+
+    if (dashboardData.stores) {
+      [...dashboardData.stores].forEach((store: any) => {
+        result += `${store.name}\n${storeNetworkSeporator}`;
+        [...store.stores].forEach((storePoint: any) => {
+          result += `[${storePoint.address || "адрес не указан"}] - ${storePoint.mccCode.code}\n${storeSeporator}`;
+        })
+        result += commercialNetworkSeporator;
+      })
+    }
+
+    console.log("end render dashboard")
+    console.log(result)
+
+    return result;
+  }
+
+  const commercialNetworkSeporator = "-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n"
+  const storeNetworkSeporator = "-----                                         -----\n"
+  const storeSeporator = "---------------------------------------------\n"
 
   //------------
 
@@ -246,7 +304,7 @@ const CardPanel = (props: any) => {
             {
               banks?.map((bank: any) => {
                 return (
-                  <MenuItem value={bank.id}>{bank.name}</MenuItem>
+                  <MenuItem key={bank.id} value={bank.id}>{bank.name}</MenuItem>
                 );
               })}
           </Select>
@@ -290,7 +348,7 @@ const CardPanel = (props: any) => {
             {
               cards?.map((card: any) => {
                 return (
-                  <MenuItem value={card.id}>{card.name}</MenuItem>
+                  <MenuItem key={card.id} value={card.id}>{card.name}</MenuItem>
                 );
               })}
           </Select>
@@ -351,7 +409,7 @@ const CardPanel = (props: any) => {
             {
               categories?.map((category: any) => {
                 return (
-                  <MenuItem value={category.id}>{category.name}</MenuItem>
+                  <MenuItem key={category.id} value={category.id}>{category.name}</MenuItem>
                 );
               })}
           </Select>
@@ -423,6 +481,22 @@ const CardPanel = (props: any) => {
             </Box>
           </Box>
         </Box>
+
+        {
+          dashboardData.stores ?
+            <Box className="dashboardPanel" gridColumn="span 12">
+              <InputLabel>Подходящие магазины</InputLabel>
+              <TextField
+                fullWidth
+                multiline
+                value={textForDashboard() || ""}
+                inputProps={{ readOnly: true, }}
+                InputLabelProps={{ shrink: true }}
+                margin="normal"
+              />
+            </Box>
+            : null
+        }
       </Box>
     </Item>
   );

@@ -137,7 +137,7 @@ const StorePanel = (props: any) => {
         <Box className="commercialNetworkPanel" gridColumn="span 6">
           <InputLabel id="demo-simple-select-label">Магазины</InputLabel>
           <Select
-            value={commercialNetwork?.name}
+            value={commercialNetwork?.name || ""}
             fullWidth
             label="Название магазина"
             onChange={handleSelectCommercialNetwork}
@@ -145,7 +145,7 @@ const StorePanel = (props: any) => {
             {
               commercialNetworks?.map((commercialNetwork: any) => {
                 return (
-                  <MenuItem value={commercialNetwork.id}>{commercialNetwork.name}</MenuItem>
+                  <MenuItem key={commercialNetwork.id} value={commercialNetwork.id}>{commercialNetwork.name}</MenuItem>
                 );
               })}
           </Select>

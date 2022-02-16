@@ -14,6 +14,7 @@
 
   <ItemGroup>
     <Folder Include="Common\Interfaces\" />
+    <Folder Include="Modules\DashboardModule\Commands\" />
   </ItemGroup>
 
   <ItemGroup>

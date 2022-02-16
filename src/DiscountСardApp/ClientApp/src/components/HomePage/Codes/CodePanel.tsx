@@ -80,7 +80,7 @@ const CodePanel = (props: any) => {
           {
             codes?.map((code: any) => {
               return (
-                <MenuItem value={code.id}>{code.code}</MenuItem>
+                <MenuItem key={code.id} value={code.id}>{code.code}</MenuItem>
               );
             })}
         </Select>

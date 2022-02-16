@@ -5,6 +5,7 @@ using DiscountСardApp.Application.DTOs.V1.CategoryDto.Requests;
 using DiscountСardApp.Application.DTOs.V1.CategoryDto.Results;
 using DiscountСardApp.Application.DTOs.V1.CommercialNetworkDto.Requests;
 using DiscountСardApp.Application.DTOs.V1.CommercialNetworkDto.Results;
+using DiscountСardApp.Application.DTOs.V1.DashboardDto.Results;
 using DiscountСardApp.Application.DTOs.V1.DiscountCardDto.Requests;
 using DiscountСardApp.Application.DTOs.V1.DiscountCardDto.Results;
 using DiscountСardApp.Application.DTOs.V1.EmptyResult;
@@ -15,6 +16,7 @@ using DiscountСardApp.Application.DTOs.V1.StoreDto.Results;
 using DiscountСardApp.Application.Models.V1.Bank.Results;
 using DiscountСardApp.Application.Models.V1.Category.Results;
 using DiscountСardApp.Application.Models.V1.CommercialNetwork.Results;
+using DiscountСardApp.Application.Models.V1.Dashboard.Results;
 using DiscountСardApp.Application.Models.V1.DiscountCard.Results;
 using DiscountСardApp.Application.Models.V1.EmptyResult;
 using DiscountСardApp.Application.Models.V1.MCCCode.Results;
@@ -106,11 +108,6 @@ namespace DiscountСardApp.Application.Mapping
 
             #endregion
 
-            #region EmptyResult
-
-            CreateMap<EmptyResult, EmptyResultDto>();
-
-            #endregion
         }
 
         private void ConfigureModelMappings()
@@ -149,6 +146,18 @@ namespace DiscountСardApp.Application.Mapping
             #region Store
 
             CreateMap<StoreResult, StoreResultDto>();
+
+            #endregion
+
+            #region EmptyResult
+
+            CreateMap<EmptyResult, EmptyResultDto>();
+
+            #endregion
+
+            #region Dashboard
+
+            CreateMap<DashboardResult, DashboardResultDto>();
 
             #endregion
         }
