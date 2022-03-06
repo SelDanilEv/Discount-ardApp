@@ -15,18 +15,13 @@ RUN apt-get install -y libpng-dev libjpeg-dev curl libxi6 build-essential libgl1
 RUN curl -sL https://deb.nodesource.com/setup_16.x | bash -
 RUN apt-get install -y nodejs
 
-ENV BuildingDocker true
-
 WORKDIR /src
 
-RUN echo $(ls -1 /var/lib/docker/tmp/)
-
-COPY ["src/DiscountCardApp/DiscountCardApp.csproj", "DiscountCardApp/"]
-COPY ["src/DiscountCardApp.Application/DiscountCardApp.Application.csproj", "DiscountCardApp.Application/"]
-COPY ["src/DiscountCardApp.Infrastructure/DiscountCardApp.Infrastructure.csproj", "DiscountCardApp.Infrastructure/"]
-COPY ["src/DiscountCardApp.Domain/DiscountCardApp.Domain.csproj", "DiscountCardApp.Domain/"]
-COPY ["src/DiscountCardApp.Common/DiscountCardApp.Common.csproj", "DiscountCardApp.Common/"]
-
+COPY ["DiscountCardApp/DiscountCardApp.csproj", "DiscountCardApp/"]
+COPY ["DiscountCardApp.Application/DiscountCardApp.Application.csproj", "DiscountCardApp.Application/"]
+COPY ["DiscountCardApp.Infrastructure/DiscountCardApp.Infrastructure.csproj", "DiscountCardApp.Infrastructure/"]
+COPY ["DiscountCardApp.Domain/DiscountCardApp.Domain.csproj", "DiscountCardApp.Domain/"]
+COPY ["DiscountCardApp.Common/DiscountCardApp.Common.csproj", "DiscountCardApp.Common/"]
 
 RUN dotnet restore "DiscountCardApp/DiscountCardApp.csproj"
 COPY . .
