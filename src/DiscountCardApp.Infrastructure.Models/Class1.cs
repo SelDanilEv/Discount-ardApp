@@ -1,4 +1,4 @@
-﻿namespace DiscountСardApp.Infrastructure.Models
+﻿namespace DiscountCardApp.Infrastructure.Models
 {
     public class Class1
     {
