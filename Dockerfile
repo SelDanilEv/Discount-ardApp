@@ -21,12 +21,11 @@ WORKDIR /src
 
 RUN echo $(ls -1 /var/lib/docker/tmp/)
 
-COPY ["DiscountCardApp/DiscountCardApp.csproj", "DiscountCardApp/"]
-COPY ["DiscountCardApp.Application/DiscountCardApp.Application.csproj", "DiscountCardApp.Application/"]
-COPY ["DiscountCardApp.Infrastructure/DiscountCardApp.Infrastructure.csproj", "DiscountCardApp.Infrastructure/"]
-COPY ["DiscountCardApp.Domain/DiscountCardApp.Domain.csproj", "DiscountCardApp.Domain/"]
-COPY ["DiscountCardApp.Common/DiscountCardApp.Common.csproj", "DiscountCardApp.Common/"]
-
+COPY ["src/DiscountCardApp/DiscountCardApp.csproj", "DiscountCardApp/"]
+COPY ["src/DiscountCardApp.Application/DiscountCardApp.Application.csproj", "DiscountCardApp.Application/"]
+COPY ["src/DiscountCardApp.Infrastructure/DiscountCardApp.Infrastructure.csproj", "DiscountCardApp.Infrastructure/"]
+COPY ["src/DiscountCardApp.Domain/DiscountCardApp.Domain.csproj", "DiscountCardApp.Domain/"]
+COPY ["src/DiscountCardApp.Common/DiscountCardApp.Common.csproj", "DiscountCardApp.Common/"]
 
 
 RUN dotnet restore "DiscountCardApp/DiscountCardApp.csproj"
