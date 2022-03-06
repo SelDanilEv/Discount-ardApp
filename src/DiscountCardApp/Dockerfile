@@ -19,7 +19,7 @@ ENV BuildingDocker true
 
 WORKDIR /src
 
-RUN echo $(ls -1 /var/lib/docker/tmp/docker-builder.*/)
+RUN echo $(ls -1 /var/lib/docker/tmp/*/)
 
 COPY ["DiscountCardApp/DiscountCardApp.csproj", "DiscountCardApp/"]
 COPY ["DiscountCardApp.Application/DiscountCardApp.Application.csproj", "DiscountCardApp.Application/"]
