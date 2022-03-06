@@ -7,7 +7,6 @@ EXPOSE 443
 
 RUN apt-get install -f
 
-
 RUN apt-get update
 RUN apt-get install -y curl
 RUN apt-get install -y libpng-dev libjpeg-dev curl libxi6 build-essential libgl1-mesa-glx
@@ -23,11 +22,11 @@ RUN curl -sL https://deb.nodesource.com/setup_16.x | bash -
 RUN apt-get install -y nodejs
 
 WORKDIR /src
-COPY ["DiscountCardApp/DiscountCardApp.csproj", "DiscountCardApp/"]
-COPY ["DiscountCardApp.Application/DiscountCardApp.Application.csproj", "DiscountCardApp.Application/"]
-COPY ["DiscountCardApp.Infrastructure/DiscountCardApp.Infrastructure.csproj", "DiscountCardApp.Infrastructure/"]
-COPY ["DiscountCardApp.Domain/DiscountCardApp.Domain.csproj", "DiscountCardApp.Domain/"]
-COPY ["DiscountCardApp.Common/DiscountCardApp.Common.csproj", "DiscountCardApp.Common/"]
+COPY ["src/DiscountCardApp/DiscountCardApp.csproj", "DiscountCardApp/"]
+COPY ["src/DiscountCardApp.Application/DiscountCardApp.Application.csproj", "DiscountCardApp.Application/"]
+COPY ["src/DiscountCardApp.Infrastructure/DiscountCardApp.Infrastructure.csproj", "DiscountCardApp.Infrastructure/"]
+COPY ["src/DiscountCardApp.Domain/DiscountCardApp.Domain.csproj", "DiscountCardApp.Domain/"]
+COPY ["src/DiscountCardApp.Common/DiscountCardApp.Common.csproj", "DiscountCardApp.Common/"]
 RUN dotnet restore "DiscountCardApp/DiscountCardApp.csproj"
 COPY . .
 WORKDIR "/src/DiscountCardApp"
@@ -39,4 +38,4 @@ RUN dotnet publish "DiscountCardApp.csproj" -c Release -o /app/publish
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "DiscountCardApp.dll"]
+CMD ["dotnet", "DiscountCardApp.dll"]
