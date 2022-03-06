@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 
-namespace DiscountСardApp.Common.Extensions
+namespace DiscountCardApp.Common.Extensions
 {
     public static class ServiceCollectionExtensions
     {

@@ -1,4 +1,4 @@
-﻿namespace DiscountСardApp.Common.Enums
+﻿namespace DiscountCardApp.Common.Enums
 {
     public enum ResponseStatus
     {

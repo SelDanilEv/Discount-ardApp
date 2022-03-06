@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32112.339
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DiscountCardApp.Common", "DiscountCardApp.Common\DiscountCardApp.Common.csproj", "{0989EF09-F6FF-43F3-8D16-8DED1D22FF50}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DiscountCardApp", "DiscountCardApp\DiscountCardApp.csproj", "{B11B909E-FD13-4836-8CD4-C8C2432184AF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DiscountCardApp.Application", "DiscountCardApp.Application\DiscountCardApp.Application.csproj", "{2132D40B-1E96-496F-B65D-D1D59DF5A326}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DiscountCardApp.Domain", "DiscountCardApp.Domain\DiscountCardApp.Domain.csproj", "{30E1C5D9-FF2D-47F5-9E9E-5AE745B361CC}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DiscountCardApp.Infrastructure", "DiscountCardApp.Infrastructure\DiscountCardApp.Infrastructure.csproj", "{60FEE20C-D521-4540-9064-024266A8897B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DiscountCardApp.Infrastructure.Models", "DiscountCardApp.Infrastructure.Models\DiscountCardApp.Infrastructure.Models.csproj", "{EF15C510-C91C-482A-BB66-BABC6AD7F659}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0989EF09-F6FF-43F3-8D16-8DED1D22FF50}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0989EF09-F6FF-43F3-8D16-8DED1D22FF50}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0989EF09-F6FF-43F3-8D16-8DED1D22FF50}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0989EF09-F6FF-43F3-8D16-8DED1D22FF50}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B11B909E-FD13-4836-8CD4-C8C2432184AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B11B909E-FD13-4836-8CD4-C8C2432184AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B11B909E-FD13-4836-8CD4-C8C2432184AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B11B909E-FD13-4836-8CD4-C8C2432184AF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2132D40B-1E96-496F-B65D-D1D59DF5A326}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2132D40B-1E96-496F-B65D-D1D59DF5A326}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2132D40B-1E96-496F-B65D-D1D59DF5A326}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2132D40B-1E96-496F-B65D-D1D59DF5A326}.Release|Any CPU.Build.0 = Release|Any CPU
+		{30E1C5D9-FF2D-47F5-9E9E-5AE745B361CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{30E1C5D9-FF2D-47F5-9E9E-5AE745B361CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{30E1C5D9-FF2D-47F5-9E9E-5AE745B361CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{30E1C5D9-FF2D-47F5-9E9E-5AE745B361CC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{60FEE20C-D521-4540-9064-024266A8897B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60FEE20C-D521-4540-9064-024266A8897B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60FEE20C-D521-4540-9064-024266A8897B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60FEE20C-D521-4540-9064-024266A8897B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EF15C510-C91C-482A-BB66-BABC6AD7F659}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF15C510-C91C-482A-BB66-BABC6AD7F659}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF15C510-C91C-482A-BB66-BABC6AD7F659}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF15C510-C91C-482A-BB66-BABC6AD7F659}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5F41C091-2F7D-424A-827D-E5948B391711}
+	EndGlobalSection
+EndGlobal
