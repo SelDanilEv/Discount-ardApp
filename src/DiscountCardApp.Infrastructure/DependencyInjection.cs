@@ -48,9 +48,11 @@ namespace DiscountCardApp.Infrastructure
 
         private static void AddMySQLDatabase(this IServiceCollection services, IConfiguration configuration)
         {
+            var connectionString = Environment.GetEnvironmentVariable("MySQLConnection") ?? configuration.GetConnectionString("MySQLConnection");
+
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseMySql(
-                    configuration.GetConnectionString("MySQLConnection"),
+                    connectionString,
                     new MySqlServerVersion(new Version(8, 0, 28))));
 
         }
